@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Rather than simply copy what other blockchains had already done, we modeled our NFT standard after the traditional art world. Art is far from the only use case for Chia NFTs, but it was our starting point nonetheless.
 
-This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/pull/18), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0005.md). It will demonstrate this functionality using both the command-line and RPCs on Windows, MacOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's reference wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
+This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0004.md), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0005.md). It will demonstrate this functionality using both the command-line and RPCs on Windows, MacOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's reference wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
 
 For detailed instructions on running each of the commands from this tutorial, see:
 
