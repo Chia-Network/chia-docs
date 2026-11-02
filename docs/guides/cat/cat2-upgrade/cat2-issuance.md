@@ -154,7 +154,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 - Navigate to [taildatabase.com](https://www.taildatabase.com).
 - Search for your CAT. We'll use Spacebucks for this example.
 - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
-- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/cat_wallet/puzzles/genesis_by_coin_id.clsp). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
@@ -353,7 +353,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 - Navigate to [taildatabase.com](https://www.taildatabase.com).
 - Search for your CAT.
 - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
-- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/cat_wallet/puzzles/delegated_tail.clsp). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 

@@ -1346,7 +1346,7 @@ This depends on what assets are included in the offer. A few rules to keep in mi
 
 ### Can I use more than one royalty address?
 
-An NFT can include a maximum of one royalty address. However, because the royalty address can be any XCH address, the address can correspond to a smart coin that splits all royalties between multiple recipient addresses. See [CHIP-8](https://github.com/Chia-Network/chips/pull/30) for one potential implementation of split royalties.
+An NFT can include a maximum of one royalty address. However, because the royalty address can be any XCH address, the address can correspond to a smart coin that splits all royalties between multiple recipient addresses. See [CHIP-8](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0008.md) for one potential implementation of split royalties.
 
 ### Are royalties paid upon transferring an NFT?
 

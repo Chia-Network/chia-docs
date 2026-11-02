@@ -253,8 +253,6 @@ uploaders:
       x-api-key: your-api-key-here
 ```
 
-For more information on this feature, see the description in the relevant [GitHub issue](https://github.com/Chia-Network/issue-tracker/issues/483).
-
 4. Start the DataLayer services from the GUI:
 
 (For CLI instructions, skip ahead to step 5.)

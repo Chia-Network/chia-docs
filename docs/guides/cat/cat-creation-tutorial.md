@@ -418,6 +418,6 @@ Finally, you can go through the same process to create a CAT now using real XCH 
 
 Congratulations! You've created your first CAT. What now?
 
-Well, hopefully you can share your CAT with the world and get some traction. In the meantime, you can learn more about the [Single Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/cat_wallet/puzzles/genesis_by_coin_id.clsp) and [Multi Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/cat_wallet/puzzles/delegated_tail.clsp).
+Well, hopefully you can share your CAT with the world and get some traction. In the meantime, you can learn more about the [Single Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/cat_wallet/puzzles/genesis_by_coin_id.clsp) and [Multi Issuance TAIL](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/cat_wallet/puzzles/delegated_tail.clsp).
 
 This guide was for fungible tokens. Now you can learn about [non-fungible tokens](/guides/nft-intro).
