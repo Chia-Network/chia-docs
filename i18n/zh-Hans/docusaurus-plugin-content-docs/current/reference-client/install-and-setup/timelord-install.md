@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 **DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!
 :::
 
-Timelord architecture information can be found [here](/chia-blockchain/architecture/timelords).\
+Timelord architecture information can be found [here](/chia-blockchain/architecture/timelords).  
 The hw_vdf_client parameter information can be found [here](/reference-client/cli-reference/asic-hwvdf-cli).
 
 ---
@@ -18,7 +18,7 @@ The hw_vdf_client parameter information can be found [here](/reference-client/cl
 ## Timelord Requirements and Dependencies
 
 :::info
-Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.\
+Due to restrictions on how [MSVC](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B) handles 128 bit numbers and how Python relies upon MSVC, it is not possible to build and run Timelords of all types on Windows.  
 Running a timelord on a farming machine will reduce the efficiency of the farmer and the timelord, for this reason it is recommended to have a dedicated machine for running timelords.
 :::
 
@@ -27,10 +27,8 @@ Requirements:
 1. Software Timelord
    - With the release of ASIC timelords, software timelords will have a near impossible time competing. It is recommended to only run a software timelord for experimentation and learning purposes.
    - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
-
 2. Bluebox Timelord
    - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
-
 3. ASIC Timelord
    - The ASIC hardware
    - Dedicated host machine that is a modern gaming PC with minimum 6 fast cores and 8GB of RAM.
@@ -90,7 +88,7 @@ The bluebox timelord must be installed from scratch following the instructions [
   <TabItem value="hw-tl">
 
 :::warning
-**DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!\
+**DO NOT** overclock ASICs, overclocking diminishes the life of the ASIC!  
 Detailed information about the hw_vdf_client parameters can be found [here](/reference-client/cli-reference/asic-hwvdf-cli).
 :::
 
@@ -105,8 +103,38 @@ Main Machine (ASIC 1)  --------------------------
 (chia node, timelord-only, and ASIC software)    \_____  ASIC 3 (ASIC software only, IP set to main machine)
 ```
 
-For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.\
+For an ASIC cluster you will need to follow the below install steps on the main machine to include the chia node, timelord-only, and ASIC software processes are all being run on the main machine.  
 The additional ASIC hosts will only need the ASIC software installed (noted in the below install instructions).
+
+When the timelord and ASIC software run on different machines (not localhost-only), update `~/.chia/mainnet/config/config.yaml` on the **timelord host** before starting services:
+
+- Set `timelord.vdf_server.host` to `0.0.0.0` so the timelord listens for remote `hw_vdf_client` TCP connections (default port `8000`).
+- Add each ASIC machine's LAN IP to `timelord.vdf_clients.ip`. The timelord accepts only VDF clients whose source IP appears in this list.
+- On each ASIC host, point `hw_vdf_client` at the timelord with `--ip <timelord-host-ip>` (see [ASIC HW VDF CLI](/reference-client/cli-reference/asic-hwvdf-cli)).
+- When using hardware VDF clients only, set `timelord_launcher.process_count` to `0` so the timelord launcher does not spawn local software `vdf_client` processes.
+
+Example `timelord` section (adjust IPs for your cluster):
+
+```yaml
+timelord:
+  vdf_server:
+    host: 0.0.0.0
+    port: 8000
+  vdf_clients:
+    ip:
+      - 127.0.0.1
+      - <asic-host-ip>
+```
+
+Replace `<asic-host-ip>` with the source IP of each ASIC machine. Add one entry per remote ASIC host.
+
+On each remote ASIC host:
+
+```bash
+hw_vdf_client --ip <timelord-host-ip> 8000 1
+```
+
+Use `1` for `N_VDFS` on cluster nodes that run a single engine; see the install steps below for localhost examples.
 
 ```bash
 # Install packages
@@ -138,7 +166,7 @@ chia start node timelord-only
 ### Installing a Timelord from Source
 
 :::info
-On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.\
+On MacOS x86_64 and all Linux distributions, building a Timelord is as easy as running `chia start timelord &` in the virtual environment. You can also run `./vdf_bench square_asm 400000` once you've built Timelord to give you a sense of your optimal and unloaded ips. Each run of `vdf_bench` can be surprisingly variable and, in production, the actual ips you will obtain will usually be about 20% lower due to load of creating proofs. The default configuration for Timelords is good enough to just let you start it up. Set your log level to INFO and then grep for "Estimated IPS:" to get a sense of what actual ips your Timelord is achieving.  
 Detailed information about the hw_vdf_client parameters can be found [here](/reference-client/cli-reference/asic-hwvdf-cli).
 :::
 
@@ -209,7 +237,7 @@ chia start node timelord-only
 
 ## ASIC Timelord Systemd Setup
 
-Below is an example of a systemd service file to run the ASIC hw vdf processes.\
+Below is an example of a systemd service file to run the ASIC hw vdf processes.  
 NOTE - make sure to replace `USERNAME` with your system's username.
 
 ```bash

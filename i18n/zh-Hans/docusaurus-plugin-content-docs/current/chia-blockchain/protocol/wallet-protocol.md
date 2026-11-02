@@ -129,7 +129,7 @@ class RespondBlockHeader(Streamable):
 
 ## request_block_headers
 
-A request from the wallet to the full node for a HeaderBlock at a specific height.\
+A request from the wallet to the full node for a HeaderBlock at a specific height.  
 NOTE: this message deprecates and replaces `request_header_blocks` (flip block and header).
 
 ```python
@@ -139,7 +139,7 @@ class RequestBlockHeaders(Streamable):
 
 ## respond_block_headers
 
-A response to a `request_block_headers` request.\
+A response to a `request_block_headers` request.  
 NOTE: this message deprecates and replaces `respond_header_blocks` (flip block and header).
 
 ```python
@@ -149,7 +149,7 @@ class RespondBlockHeaders(Streamable):
 
 ## reject_block_headers
 
-A rejection to a `request_block_headers` request.\
+A rejection to a `request_block_headers` request.  
 NOTE: this message deprecates and replaces `reject_header_blocks` (flip block and header).
 
 ```python
@@ -246,7 +246,7 @@ class RejectAdditionsRequest(Streamable):
 
 ## request_header_blocks
 
-DEPRECATED: this message has been deprecated and replaced with `request_block_headers` (flip block and header).\
+DEPRECATED: this message has been deprecated and replaced with `request_block_headers` (flip block and header).  
 A request from the wallet to the full node for a list of consecutive header blocks, inclusive.
 
 ```python
@@ -257,7 +257,7 @@ class RequestHeaderBlocks(Streamable):
 
 ## reject_header_blocks
 
-DEPRECATED: this message has been deprecated and replaced with `reject_block_headers` (flip block and header).\
+DEPRECATED: this message has been deprecated and replaced with `reject_block_headers` (flip block and header).  
 A rejection for a `request_header_blocks` request.
 
 ```python
@@ -268,7 +268,7 @@ class RejectHeaderBlocks(Streamable):
 
 ## respond_header_blocks
 
-DEPRECATED: this message has been deprecated and replaced with `respond_block_headers` (flip block and header).\
+DEPRECATED: this message has been deprecated and replaced with `respond_block_headers` (flip block and header).  
 A response to a `request_header_blocks` request.
 
 ```python
@@ -428,8 +428,8 @@ class RespondRemoveCoinSubscriptions:
 
 ## request_puzzle_state
 
-Requests coin states that match the given puzzle hashes (or hints).\
-When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.\
+Requests coin states that match the given puzzle hashes (or hints).  
+When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.  
 When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time).
 Filter out spent, unspent, or hinted coins, as well as coins below a minimum amount.
 
@@ -477,8 +477,8 @@ class RejectStateReason(IntEnum):
 
 ## request_coin_state
 
-Request coin states that match the given coin ids.\
-When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.\
+Request coin states that match the given coin ids.  
+When subscribe is set to True, it will add and return as many coin ids to the subscriptions list as possible.  
 When subscribe is set to True and mempool updates are enabled (can be done during the handshake) mempool update messages will be sent (including an initial MempoolItemsAdded message when you subscribe for the first time).
 
 ```python
@@ -491,7 +491,7 @@ class RequestCoinState:
 
 ## respond_coin_state
 
-Respond with coin states that match the given coin ids.\
+Respond with coin states that match the given coin ids.  
 This does not implement batching for simplicity. The order is also not guaranteed. However, you can still specify the previous_height and header_hash to start.
 
 ```python
