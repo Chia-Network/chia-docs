@@ -41,7 +41,7 @@ One drawback is that some hardware wallets either have a tiny screen, or no scre
 
 This is an example of a cryptographic hash, and it doesn't provide any human-readable information. Alice must decide whether to authorize this transaction without knowing with any certainty how much money she is sending, or to whom she is sending it. In other words, she must sign the transaction blindly, and hope that it has not been altered. If Alice's computer is compromised, her wallet may have delivered a hash that corresponds to `Alice sends Carly 1,000,000 XYZ`, and she would have no way of verifying this info.
 
-This issue isn't hypothetical. In fact, it was one of the main factors that led to the [Bybit hack of 2025](https://cointelegraph.com/news/bybit-hack-centralized-exchange-security-flaws), the largest crypto hack ever recorded, with losses estimated at $1.4 billion.
+This issue isn't hypothetical. In fact, it was one of the main factors that led to the [Bybit hack of 2025](https://cointelegraph.com/news/bybit-hack-centralized-exchange-security-flaws), with losses estimated at $1.4 billion.
 
 ## Blind signing (human-readable)
 
