@@ -264,6 +264,12 @@ h1,
   padding-top: 1.75rem;
 }
 
+/* A page's own --- rule already divides the section; don't draw a second one. */
+.markdown > hr + h2:not(:first-child) {
+  border-top: 0;
+  padding-top: 0.5rem;
+}
+
 .markdown a,
 .theme-admonition a {
   font-weight: 500;
@@ -340,6 +346,17 @@ hr {
 
   .navbar__search [class*='searchHintContainer'] {
     display: none;
+  }
+}
+
+/* Just above the mobile breakpoint the links still touch: close them up a little more. */
+@media (min-width: 997px) and (max-width: 1049px) {
+  .navbar__brand {
+    margin-right: 0.75rem;
+  }
+
+  .navbar__item {
+    padding-inline: 0.3125rem;
   }
 }
 
@@ -697,7 +714,7 @@ pre,
 }
 
 /* Docusaurus dims the footer logo; the brand logo stays at full strength */
-[class*='footerLogoLink'] {
+.footer [class*='footerLogoLink'] {
   opacity: 1;
 }
 

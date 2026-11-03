@@ -56,11 +56,11 @@
   overflow: hidden;
   translate: 437.6px 20px;
   rotate: -27.5deg;
-  mask-image: url('/img/hero-ribbon.svg');
+  mask-image: url('/img/ribbons/markets.svg');
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
   mask-mode: alpha;
-  -webkit-mask-image: url('/img/hero-ribbon.svg');
+  -webkit-mask-image: url('/img/ribbons/markets.svg');
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
 }
