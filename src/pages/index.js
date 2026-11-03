@@ -10,7 +10,12 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero', styles.heroBanner)}>
-      <div className="container">
+      <div className={styles.heroArt} aria-hidden="true">
+        <div className={styles.heroRibbon}>
+          <div className={styles.heroHolo} />
+        </div>
+      </div>
+      <div className={clsx('container', styles.heroContent)}>
         <p className={clsx('eyebrow', styles.heroEyebrow)}>docs.chia.net</p>
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className={clsx('hero__subtitle', styles.heroLede)}>

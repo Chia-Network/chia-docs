@@ -307,6 +307,7 @@ hr {
 }
 
 .navbar__brand {
+  flex-shrink: 0;
   gap: 0.25rem;
 }
 
@@ -328,6 +329,31 @@ hr {
 .navbar__link {
   font-size: 0.9375rem;
   font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Between the mobile breakpoint and a wide window the full navbar is crowded: drop the "Docs" title
+   (the wordmark stays) and tighten the item spacing so nothing wraps or overlaps. */
+@media (min-width: 997px) and (max-width: 1279px) {
+  .navbar__title {
+    display: none;
+  }
+
+  .navbar__item {
+    padding-inline: 0.4375rem;
+  }
+
+  .navbar__link {
+    font-size: 0.875rem;
+  }
+
+  .navbar__search-input {
+    width: 9.5rem;
+  }
+
+  .navbar__search [class*='searchHintContainer'] {
+    display: none;
+  }
 }
 
 .navbar__link--active {
