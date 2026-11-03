@@ -116,7 +116,7 @@ scripts and JS injections. It returns a JSON response with the following data:
 {
   "description": "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia.",
   "fee": 0.01,
-  "logo_url": "https://www.chia.net/img/chia_logo.svg",
+  "logo_url": "https://www.chia.net/brand/chia-logo.svg",
   "minimum_difficulty": 10,
   "name": "The Reference Pool",
   "protocol_version": 1,

@@ -196,14 +196,55 @@ module.exports = {
     {
       type: 'category',
       label: 'Chia Cloud Wallet',
+      link: {
+        type: 'generated-index',
+        slug: '/cloud-wallet',
+        title: 'Chia Cloud Wallet',
+        description:
+          'Guides for the Chia Cloud Wallet at vault.chia.net: set up a vault, send and manage assets, keep your vault secure, and build on the Developer API.',
+      },
       items: [
         'cloud-wallet/getting-started',
-        'cloud-wallet/buy-xch',
-        'cloud-wallet/in-app-support',
-        'cloud-wallet/recovery',
-        'cloud-wallet/faq',
-        'cloud-wallet/known-issues',
-        'cloud-wallet/tooltips',
+        {
+          type: 'category',
+          label: 'Using Your Vault',
+          collapsed: false,
+          items: [
+            'cloud-wallet/buy-xch',
+            'cloud-wallet/send-clawback',
+            'cloud-wallet/xch-handles',
+            'cloud-wallet/address-book',
+            'cloud-wallet/tokens',
+            'cloud-wallet/nfts',
+            'cloud-wallet/offers',
+            'cloud-wallet/coin-management',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Security and Recovery',
+          items: [
+            'cloud-wallet/recovery',
+            'cloud-wallet/vault-upgrade',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Developers',
+          items: [
+            'cloud-wallet/developer-api',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Help',
+          items: [
+            'cloud-wallet/faq',
+            'cloud-wallet/known-issues',
+            'cloud-wallet/in-app-support',
+            'cloud-wallet/tooltips',
+          ],
+        },
       ]
     },
     {
@@ -497,7 +538,7 @@ module.exports = {
             slug: '/guides/gaming',
             title: 'Gaming',
             description:
-              "These guides will guide you through developing and testing gaming implementations on Chia.",
+              'Guides for developing, testing, and playing Chia Gaming (state-channel) implementations.',
           },
           items: [
             'guides/chia-gaming/gaming-developers-guide',

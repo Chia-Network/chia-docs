@@ -109,7 +109,7 @@ You can either run on a full node or use the light wallet. You also have the opt
 
 ### Binary installer
 
-If you choose to run a binary installer, download the latest version of Chia from the [Chia download page](https://www.chia.net/downloads).
+If you choose to run a binary installer, download the latest version of Chia from the [Chia download page](https://www.chia.net/farm/downloads/).
 
 After the installer has downloaded, execute it and Chia will install automatically.
 

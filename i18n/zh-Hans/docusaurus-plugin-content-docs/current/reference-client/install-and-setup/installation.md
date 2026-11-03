@@ -14,7 +14,7 @@ This page will go into the details of the various different ways to install Chia
 
 There are various ways to install Chia, with the best method depending on what you intend to do:
 
-- If you simply wish to use the Chia wallet, or to run a farm on a single personal computer, then we recommend installing the GUI from our [official downloads page](https://www.chia.net/downloads) for Windows and MacOS, and for Linux users to install the package [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client and ideal for most non-developer use cases.
+- If you simply wish to use the Chia wallet, or to run a farm on a single personal computer, then we recommend installing the GUI from our [official downloads page](https://www.chia.net/farm/downloads/) for Windows and MacOS, and for Linux users to install the package [as described below](#using-the-cli). The GUI is the simplest way to interact with the Chia client and ideal for most non-developer use cases.
 
 - If you intend to run a dedicated Chia full node on a server and connect to it programmatically using the [RPC interface](/reference-client/rpc-reference/rpc), the best method would be to install and run Chia via the command line on a proper server environment.
 
@@ -22,7 +22,7 @@ There are various ways to install Chia, with the best method depending on what y
 
 - Lastly, if you plan on making contributions to the source code, then installing Chia [from source](/reference-client/install-and-setup/installation#from-source) would be your path.
 
-**_In summary, unless you already knew before reading this page that you should be installing from source, chances are your best path will be to install from our [official downloads page](https://www.chia.net/downloads) or a Linux package, depending on your OS._**
+**_In summary, unless you already knew before reading this page that you should be installing from source, chances are your best path will be to install from our [official downloads page](https://www.chia.net/farm/downloads/) or a Linux package, depending on your OS._**
 
 ## System Requirements
 

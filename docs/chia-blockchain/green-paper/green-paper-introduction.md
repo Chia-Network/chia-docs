@@ -211,7 +211,7 @@ To prevent such attacks some chain require parties to delete old keys, but it's 
 
 ### 1.8.3 Replotting
 
-A subtle but important difference between stake and space is the fact that space allows for _replotting_ which has no analogue in the stake setting: Given a challenge $c$, a space farmer controlling a plot $S$ of size $N$ can _efficiently_ compute _one_ proof $\sigma \gets  {\sf PoSpace.prove}(S,c)$. This is analogous to the stake based setting, but unlike in the stake setting, the farmer can _inefficiently_ compute _multiple_ proofs for challenge $c$ by repeatedly creating fresh plots and computing one proof with each of them.
+A subtle but important difference between stake and space is the fact that space allows for _replotting_ which has no analogue in the stake setting: Given a challenge $c$, a space farmer controlling a plot $S$ of size $N$ can _efficiently_ compute _one_ proof $\sigma \gets {\sf PoSpace.prove}(S,c)$. This is analogous to the stake based setting, but unlike in the stake setting, the farmer can _inefficiently_ compute _multiple_ proofs for challenge $c$ by repeatedly creating fresh plots and computing one proof with each of them.
 
 We refer to attacks exploiting this fact as _replotting attacks_. The most basic design choice to harden a chain against replotting attacks is to make sure that challenges arrive at a sufficiently high rate so that substantial replotting in-between two challenges is not feasible. Moreover the plot filter (which dictates what fraction of plots must be accessed with every challenge) cannot be chosen too aggressively as more aggressive filters makes potential replotting attacks easier.
 

@@ -7,7 +7,7 @@ slug: /chia-blockchain/resources/references
 
 - [chia.net](https://www.chia.net/) -- Chia's main website
 - [chialisp.com](https://chialisp.com) -- the official chialisp website
-- [Chia's business white paper](https://www.chia.net/whitepaper "Chia's business white paper")
+- [Chia's business white paper](https://www.chia.net/white-paper/ "Chia's business white paper")
 
 ## Chia's Technical Specs
 

@@ -19,7 +19,7 @@ When starting chia for the first time with the database snapshot it can take upw
 
 Using the GUI:
 
-1. Download the torrent file from https://www.chia.net/downloads/#database-checkpoint (mainnet and testnet database torrents are available)
+1. Download the torrent file from https://www.chia.net/farm/downloads/#database-checkpoint (mainnet and testnet database torrents are available)
 2. Use a torrent client to download the full db (bittorrent, qbittorrent, and transmission have be used successfully for this)
 3. Unpack/reassemble the torrent file that was downloaded (on windows one can use 7zip, Mac and linux have built in tools that work for this)
 4. Move the db and associated files to the correct folder (`~/.chia/mainnet/db/` is the default location for these files)
@@ -211,7 +211,7 @@ This means that:
 
 In summary, if you farm using a community node, that node can steal all of your farming rewards as you earn them. The way to avoid this scenario is to run your own node.
 
-Luckily, a high-powered system is not required to run a Chia node. In fact, the [minimum supported node hardware](https://docs.chia.net/chia-blockchain/coin-set-model/costs/#farming-spec) is the Raspberry Pi with a cheap external SSD to hold the database file. In order to expedite the process of syncing your full node, you can download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint).
+Luckily, a high-powered system is not required to run a Chia node. In fact, the [minimum supported node hardware](https://docs.chia.net/chia-blockchain/coin-set-model/costs/#farming-spec) is the Raspberry Pi with a cheap external SSD to hold the database file. In order to expedite the process of syncing your full node, you can download a [database checkpoint](https://www.chia.net/farm/downloads/#database-checkpoint).
 
 ## Database Schema Compatibility Issues
 

@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ### What is the Chia Cloud Wallet?
 
-The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. This makes it easy for newcomers to get started with Chia; it also provides a secure custody solution. In addition, it will eventually include an API for developers in Chia's ecosystem to make dApps that use the Chia blockchain.
+The Cloud Wallet is a platform for interacting with the Chia blockchain. Assets are stored in vaults, in an app that is always synced with the blockchain. This makes it easy for newcomers to get started with Chia; it also provides a secure custody solution. Developers can build on it with the [Cloud Wallet API](/cloud-wallet/developer-api).
 
 ### Is the Chia Cloud Wallet available for mainnet?
 
@@ -126,6 +126,10 @@ No. When you initiate the recovery, you lock in the new keys. The only way to ch
 ### What is Instant Recovery?
 
 Instant Recovery lets you rekey your vault immediately using your current spend key: you can change your spend key, recovery key, recovery timelock, or any combination of those, in one confirmed transaction, without waiting for the recovery clawback timer. Common reasons include getting a new phone (Chia Signer keys cannot be copied off the old device), replacing a lost recovery phrase while you still can sign, or rotating a compromised recovery key after you cancel a malicious timelocked recovery. Details: [Recovery](/cloud-wallet/recovery).
+
+### Can I recover an upgraded vault without the Cloud Wallet?
+
+Yes, after the vault upgrade has confirmed. The upgrade keeps your keys and publishes an on-chain recovery hint. [Chia Vault Recover](https://github.com/Chia-Network/chia-vault-recover) or another compatible wallet can read that hint and recover the vault from your 24-word recovery phrase. Importing vaults into the Cloud Wallet is not supported at this time. Importing a vault into a different wallet, or using a different tool to perform wallet operations, can remove your access to that vault in the Cloud Wallet.
 
 ### When should I use Instant Recovery vs Timelocked Recovery?
 
@@ -271,7 +275,7 @@ XCH purchase transactions use Chia’s Clawback 2.0 feature ensuring that if you
 
 ### What does “Finalizing“ a Clawback Transaction mean?
 
-Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This enhanced flexibility is used in Buy XCH to complete your transaction as soon as your bank payment clears.
+Unlike the original implementation of Clawbacks, Clawback 2.0 lets the sender finalize a transaction early, immediately releasing the funds to the recipient. This is used in Buy XCH when your bank payment clears, and you can also finalize early on an XCH send that used clawback. See [Send Clawback](/cloud-wallet/send-clawback).
 
 ### What are the purchase limits for Buy XCH?
 

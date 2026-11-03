@@ -24,7 +24,7 @@ Ready? Let's get started!
 
 ## Install Chia
 
-Head to [the official download page](https://www.chia.net/downloads/); download and run the installer for your Operating System. The default settings are fine for most setups.
+Head to [the official download page](https://www.chia.net/farm/downloads/); download and run the installer for your Operating System. The default settings are fine for most setups.
 
 Two check boxes will be shown on the last screen after the install has completed. It's a good idea to check both of them. Doing so will allow you to type `chia` in a terminal window without requiring the full path, and it will automatically start the application.
 
@@ -744,7 +744,7 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 
 ### Further reading
 
-- [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
+- [Offers blog entry](https://www.chia.net/blog/chia-offers-are-here/)
 - [Offers reference](https://chialisp.com/offers)
 - [CLI tutorial](/guides/offers-cli-tutorial)
 - [Info on the coin set model](/chia-blockchain/coin-set-model/intro)

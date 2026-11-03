@@ -93,7 +93,7 @@ The link has been copied, so you are ready to set up WalletConnect in Chia's ref
 
 ## Configure WalletConnect
 
-1. [Download and install](https://www.chia.net/downloads/) the latest version of Chia's reference wallet
+1. [Download and install](https://www.chia.net/farm/downloads/) the latest version of Chia's reference wallet
 
 2. Set up Chia's testnet
 

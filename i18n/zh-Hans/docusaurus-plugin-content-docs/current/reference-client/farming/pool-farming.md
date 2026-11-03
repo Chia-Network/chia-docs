@@ -29,9 +29,9 @@ In order to set up your farm for pooling, you need to have a synced full node an
 
 :::info
 
-If you want to avoid syncing from genesis, you can download a [database checkpoint](https://www.chia.net/downloads/#database-checkpoint).
+If you want to avoid syncing from genesis, you can download a [database checkpoint](https://www.chia.net/farm/downloads/#database-checkpoint).
 
-For more info, see our [blog post](https://www.chia.net/2023/03/19/introducing-chia-blockchain-database-bittorent-checkpoints/) on this subject.
+For more info, see our [blog post](https://www.chia.net/blog/introducing-chia-blockchain-database-bittorrent-checkpoints/) on this subject.
 
 :::
 

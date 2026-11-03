@@ -1,6 +1,7 @@
 ---
 title: In App Support
 slug: /cloud-wallet/in-app-support
+sidebar_label: In-App Support
 ---
 
 This guide shows how to contact Cloud Wallet support from inside the app, track your tickets, and reply until the issue is resolved.

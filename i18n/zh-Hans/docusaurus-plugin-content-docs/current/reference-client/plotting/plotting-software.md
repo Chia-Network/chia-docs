@@ -73,7 +73,7 @@ Plot capabilities
 
 - Type: Compressed or uncompressed
 - Size: k32 only (larger sizes to be added later)
-- [More info](https://www.chia.net/2022/08/08/announcing-bladebit-2-0/)
+- [More info](https://www.chia.net/blog/announcing-bladebit-2-0/)
 
 Requirements
 

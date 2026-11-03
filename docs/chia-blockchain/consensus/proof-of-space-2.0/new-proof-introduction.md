@@ -27,7 +27,7 @@ While the development of this technology is ongoing, we have put together severa
 
 ## Current Blogs and CHIPs
 
-The best place to start learning about the new Proof of Space is our [latest blog post](https://www.chia.net/2026/02/27/changes-coming-to-3-0/) on the topic. To dive more into the specifications and provide your feedback, please refer to the appropriate CHIPs:
+The best place to start learning about the new Proof of Space is our [latest blog post](https://www.chia.net/blog/changes-coming-to-3-0/) on the topic. To dive more into the specifications and provide your feedback, please refer to the appropriate CHIPs:
 
 - The new Proof of Space [CHIP-48](https://github.com/Chia-Network/chips/pull/160)
 - The timelines for the new Proof of Space [CHIP-49](https://github.com/Chia-Network/chips/pull/161)
@@ -49,8 +49,8 @@ We have consolidated the high level information from the CHIPs into the below do
 
 These blog poss are listed in reverse chronological order. The newest posts will contain the most up-to-date information.
 
-- [Changes Coming to 3.0](https://www.chia.net/2026/02/27/changes-coming-to-3-0/) -- 2026-02-27
-- [Understanding the Next Generation of Proof of Space](https://www.chia.net/2025/05/19/understanding-the-next-generation-proof-of-space/) -- 2025-05-19
-- [The Future of Farming is Green and Secure](https://www.chia.net/2025/05/19/the-future-of-farming-is-green-and-secure/) -- 2025-05-19
-- [Upcoming Changes for Chia’s New Proof of Space Format](https://www.chia.net/2024/12/11/upcoming-changes-for-chias-new-proof-of-space-format) -- 2024-12-11
-- [Approaching the Next Generation of Proof of Space](https://www.chia.net/2024/08/08/approaching-the-next-generation-of-proof-of-space/) -- 2024-08-08
+- [Changes Coming to 3.0](https://www.chia.net/blog/changes-coming-to-3-0/) -- 2026-02-27
+- [Understanding the Next Generation of Proof of Space](https://www.chia.net/blog/understanding-the-next-generation-proof-of-space/) -- 2025-05-19
+- [The Future of Farming is Green and Secure](https://www.chia.net/blog/the-future-of-farming-is-green-and-secure/) -- 2025-05-19
+- [Upcoming Changes for Chia’s New Proof of Space Format](https://www.chia.net/blog/upcoming-changes-for-chias-new-proof-of-space-format/) -- 2024-12-11
+- [Approaching the Next Generation of Proof of Space](https://www.chia.net/blog/approaching-the-next-generation-of-proof-of-space/) -- 2024-08-08

@@ -1,6 +1,7 @@
 ---
 title: Tooltips
 slug: /cloud-wallet/tooltips
+sidebar_label: Glossary
 ---
 
 import Tabs from '@theme/Tabs';
@@ -62,14 +63,18 @@ A smartphone app for **iOS** and **Android**. The app stores a spend key in hard
 
 ## Clawback
 
-You can optionally add a time span to a transaction during which you can claw it back. During this time, the recipient can see the incoming transaction, but cannot access the funds. Clawback is primarily useful to prevent sending funds to the wrong address.
+You can optionally add a time span to an XCH send during which you can claw it back. During this time, the recipient can see the incoming transaction, but cannot access the funds. Clawback is primarily useful to prevent sending funds to the wrong address. Step-by-step instructions are in the [Send Clawback](/cloud-wallet/send-clawback) guide.
 
 For example, Alice sends 1 XCH to Bob, and she adds a 1-hour clawback.
 
 - For the next hour, Bob can see the incoming XCH in his vault's transaction list, but he cannot access it.
 - Let's say Alice accidentally sent the XCH to the wrong address. During the 1-hour clawback period, she can claw the 1 XCH back to her vault.
 - On the other hand, maybe Bob contacts Alice to let her know that he can see the incoming XCH. In this case, Alice can finalize the transaction before the 1-hour timer has expired.
-- After the 1-hour timer has expired, Alice can no longer claw back the funds. The 1 XCH is now automatically counted with Bob's vault balance.
+- After the 1-hour timer has expired, Alice can no longer claw back the funds. If Bob’s wallet supports clawbacks, the XCH settles to him; if not, Alice can still push the funds through.
+
+## XCHandles
+
+An XCHandle is a human-readable name (for example `@alice`) that resolves to a Chia wallet address. In the Cloud Wallet Send form you can enter an XCHandle instead of pasting an address. The app looks the handle up, shows the resolved address, and records the handle on outbound transfers when available. Handles use `@` plus 3–63 lowercase letters or digits. See the [XCHandles](/cloud-wallet/xch-handles) guide and [xchandles.com](https://xchandles.com/).
 
 ## Key Types
 

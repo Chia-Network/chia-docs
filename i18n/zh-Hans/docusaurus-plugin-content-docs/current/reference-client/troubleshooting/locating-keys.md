@@ -50,7 +50,7 @@ Never share your private / secret keys or mnemonics with anyone. These give acce
 </div><br />
 
 :::note
-For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/) blog article.
+For more security best practices please review the [Securing Your Chia – How to Be a Hard Target](https://www.chia.net/blog/securing-your-chia-how-to-be-a-hard-target/) blog article.
 :::
 
 ## CLI

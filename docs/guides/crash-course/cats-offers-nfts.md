@@ -537,7 +537,7 @@ After issuing the `chia wallet nft list` command, you'll notice many properties 
 <details>
 <summary>More NFT Practice</summary>
 
-DIDs are decentralized identifiers that can own any NFT. Read more about [DIDs in CHIP-0004](https://github.com/Chia-Network/chips/blob/did1/CHIPs/chip-0004.md#motivation).
+DIDs are decentralized identifiers that can own any NFT. Read more about [DIDs in CHIP-0004](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0004.md#motivation).
 
 If you want more practice, learn to [create a DID and transfer your NFT to it](/guides/nft-cli#set-the-did-for-an-nft).
 

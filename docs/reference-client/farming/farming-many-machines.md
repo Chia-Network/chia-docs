@@ -9,7 +9,7 @@ Another title for this:
 
 :::tip
 
-Always make sure to protect yourself from malicious actors by [securing your chia and making yourself a hard target](https://www.chia.net/2021/05/28/securing-your-chia-how-to-be-a-hard-target/)
+Always make sure to protect yourself from malicious actors by [securing your chia and making yourself a hard target](https://www.chia.net/blog/securing-your-chia-how-to-be-a-hard-target/)
 
 :::
 

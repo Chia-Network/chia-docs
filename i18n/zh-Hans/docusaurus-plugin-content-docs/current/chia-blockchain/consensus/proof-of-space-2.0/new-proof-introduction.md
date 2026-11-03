@@ -29,8 +29,8 @@ While the development of this technology is ongoing, we have put together severa
 
 The best place to start learning about the new Proof of Space is to read the blogs.
 
-- The new Proof of Space [blog](https://www.chia.net/2025/05/19/understanding-the-next-generation-proof-of-space/)
-- The timelines for the new Proof of Space [blog](https://www.chia.net/2025/05/19/the-future-of-farming-is-green-and-secure/)
+- The new Proof of Space [blog](https://www.chia.net/blog/understanding-the-next-generation-proof-of-space/)
+- The timelines for the new Proof of Space [blog](https://www.chia.net/blog/the-future-of-farming-is-green-and-secure/)
 
 To dive more into the specifications and provide your feedback please refer to the appropriate CHIPs:
 
@@ -52,5 +52,5 @@ We have consolidated the high level information from the CHIPs into the below do
 
 ## Blog Archive
 
-- A [blog post](https://www.chia.net/2024/12/11/upcoming-changes-for-chias-new-proof-of-space-format) by Dr. Nick, which takes a deep dive into the plans as of 12/11/2024
-- The original [blog post](https://www.chia.net/2024/08/08/approaching-the-next-generation-of-proof-of-space/) by Dr. Nick, which takes a deep dive into the initial plans for the new Proof Format. Note that this blog is outdated and the new blog should be used for the latest information.
+- A [blog post](https://www.chia.net/blog/upcoming-changes-for-chias-new-proof-of-space-format/) by Dr. Nick, which takes a deep dive into the plans as of 12/11/2024
+- The original [blog post](https://www.chia.net/blog/approaching-the-next-generation-of-proof-of-space/) by Dr. Nick, which takes a deep dive into the initial plans for the new Proof Format. Note that this blog is outdated and the new blog should be used for the latest information.

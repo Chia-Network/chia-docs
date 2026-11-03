@@ -882,7 +882,7 @@ The CAT1 Standard reached its end of life (EOL) with block 2,311,760 in July 202
 
 ## Further reading
 
-- [Offers blog entry](https://www.chia.net/2022/01/12/chia-offers-are-here-en.html)
+- [Offers blog entry](https://www.chia.net/blog/chia-offers-are-here/)
 - [Offers reference](https://chialisp.com/offers)
 - [GUI tutorial](/reference-client/getting-started/wallet-guide)
 - [Info on the coin set model](/chia-blockchain/coin-set-model/intro)
