@@ -21,11 +21,19 @@ export default function NotFoundContent() {
       })}
       actions={[
         {
-          label: translate({ id: 'chia.NotFound.home', message: 'Docs home' }),
+          label: translate({
+            id: 'chia.NotFound.home',
+            message: 'Docs home',
+            description: "The 404 page's button back to the docs home",
+          }),
           to: '/',
         },
         {
-          label: translate({ id: 'chia.NotFound.devGuides', message: 'Dev Guides' }),
+          label: translate({
+            id: 'chia.NotFound.devGuides',
+            message: 'Dev Guides',
+            description: "The 404 page's button to the Dev Guides home",
+          }),
           to: '/dev-guides-home',
         },
       ]}

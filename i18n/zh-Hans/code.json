@@ -1,0 +1,10 @@
+{
+  "chia.NotFound.home": {
+    "message": "文档首页",
+    "description": "The 404 page's button back to the docs home"
+  },
+  "chia.NotFound.devGuides": {
+    "message": "开发指南",
+    "description": "The 404 page's button to the Dev Guides home"
+  }
+}
