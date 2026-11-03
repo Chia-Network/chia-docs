@@ -3,11 +3,19 @@ module.exports = {
     {
       type: 'category',
       label: 'Chia Blockchain',
+      link: {
+        type: 'generated-index',
+        slug: '/chia-blockchain',
+      },
       items: [
         'chia-blockchain/introduction',
         {
           type: 'category',
           label: 'Green Paper',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/green-paper',
+          },
           items: [
             'chia-blockchain/green-paper/green-paper-abstract',
             'chia-blockchain/green-paper/constants-variables-notation',
@@ -24,6 +32,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Architecture',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/architecture',
+          },
           items: [
             'chia-blockchain/architecture/architecture-overview',
             'chia-blockchain/architecture/full-nodes',
@@ -36,8 +48,11 @@ module.exports = {
             {
               type: 'category',
               label: 'Mempool',
+              link: {
+                type: 'doc',
+                id: 'chia-blockchain/architecture/mempool/intro',
+              },
               items: [
-                'chia-blockchain/architecture/mempool/intro',
                 'chia-blockchain/architecture/mempool/fees',
                 'chia-blockchain/architecture/mempool/block-creation',
                 'chia-blockchain/architecture/mempool/time-locks',
@@ -52,12 +67,20 @@ module.exports = {
         {
           type: 'category',
           label: 'Consensus',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/consensus',
+          },
           items: [
             'chia-blockchain/consensus/consensus-intro',
             'chia-blockchain/consensus/proof-of-space-1.0',
             {
               type: 'category',
               label: 'Proof of Space 2.0',
+              link: {
+                type: 'generated-index',
+                slug: '/chia-blockchain/consensus/proof-of-space-2.0',
+              },
               items: [
                 'chia-blockchain/consensus/proof-of-space-2.0/new-proof-introduction',
                 'chia-blockchain/consensus/proof-of-space-2.0/new-proof-plotting-requirements',
@@ -72,6 +95,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Chains',
+              link: {
+                type: 'generated-index',
+                slug: '/chia-blockchain/consensus/chains',
+              },
               items: [
                 'chia-blockchain/consensus/chains/challenges',
                 'chia-blockchain/consensus/chains/signage-and-infusion-points',
@@ -86,6 +113,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Block Validation',
+              link: {
+                type: 'generated-index',
+                slug: '/chia-blockchain/consensus/block-validation',
+              },
               items: [
                 'chia-blockchain/consensus/block-validation/block-validation',
                 'chia-blockchain/consensus/block-validation/block-format',
@@ -101,6 +132,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Coin Set Model',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/coin-set-model',
+          },
           items: [
             'chia-blockchain/coin-set-model/intro',
             'chia-blockchain/coin-set-model/costs',
@@ -116,6 +151,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Keys',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/keys',
+          },
           items: [
             'chia-blockchain/keys/architecture',
             'chia-blockchain/keys/keys-and-signatures',
@@ -126,6 +165,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Protocol',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/protocol',
+          },
           items: [
             'chia-blockchain/protocol/protocol',
             'chia-blockchain/protocol/networking-protocol',
@@ -135,6 +178,10 @@ module.exports = {
             {
               type: 'category',
               label: 'Pool Protocol',
+              link: {
+                type: 'generated-index',
+                slug: '/chia-blockchain/protocol/pool',
+              },
               items: [
                 'chia-blockchain/protocol/pool/pool-protocol',
                 'chia-blockchain/protocol/pool/pool-protocol-specification',
@@ -146,6 +193,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Resources',
+          link: {
+            type: 'generated-index',
+            slug: '/chia-blockchain/resources',
+          },
           items: [
             'chia-blockchain/resources/cryptocurrency-intro',
             'chia-blockchain/resources/references',
@@ -209,6 +260,10 @@ module.exports = {
           type: 'category',
           label: 'Using Your Vault',
           collapsed: false,
+          link: {
+            type: 'generated-index',
+            slug: '/cloud-wallet/using-your-vault',
+          },
           items: [
             'cloud-wallet/buy-xch',
             'cloud-wallet/send-clawback',
@@ -223,6 +278,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Security and Recovery',
+          link: {
+            type: 'generated-index',
+            slug: '/cloud-wallet/security-and-recovery',
+          },
           items: [
             'cloud-wallet/recovery',
             'cloud-wallet/vault-upgrade',
@@ -231,6 +290,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Developers',
+          link: {
+            type: 'generated-index',
+            slug: '/cloud-wallet/developers',
+          },
           items: [
             'cloud-wallet/developer-api',
           ],
@@ -238,6 +301,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Help',
+          link: {
+            type: 'generated-index',
+            slug: '/cloud-wallet/help',
+          },
           items: [
             'cloud-wallet/faq',
             'cloud-wallet/known-issues',
@@ -250,6 +317,10 @@ module.exports = {
     {
       type: 'category',
       label: 'Chia Signer App',
+      link: {
+        type: 'generated-index',
+        slug: '/chia-signer',
+      },
       items: [
         'chia-signer/getting-started',
         'chia-signer/faq',
@@ -258,10 +329,18 @@ module.exports = {
     {
       type: 'category',
       label: 'Chia Reference Client',
+      link: {
+        type: 'generated-index',
+        slug: '/reference-client',
+      },
       items: [
         {
           type: 'category',
           label: 'Getting Started',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/getting-started',
+          },
           items: [
             'reference-client/getting-started/farming-guide',
             'reference-client/getting-started/wallet-guide',
@@ -272,6 +351,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Install and Setup',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/install-and-setup',
+          },
           items: [
             'reference-client/install-and-setup/installation',
             'reference-client/install-and-setup/testnets',
@@ -284,6 +367,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Plotting',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/plotting',
+          },
           items: [
             'reference-client/plotting/plotting-basics',
             'reference-client/plotting/plotting-hardware',
@@ -297,6 +384,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Farming',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/farming',
+          },
           items: [
             'reference-client/farming/farming-basics',
             'reference-client/farming/farming-compressed-plots',
@@ -311,6 +402,10 @@ module.exports = {
         {
           type: 'category',
           label: 'RPC Reference',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/rpc-reference',
+          },
           items: [
             'reference-client/rpc-reference/rpc',
             'reference-client/rpc-reference/dao-rpc',
@@ -331,6 +426,10 @@ module.exports = {
         {
           type: 'category',
           label: 'CLI Reference',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/cli-reference',
+          },
           items: [
             'reference-client/cli-reference/cli',
             'reference-client/cli-reference/dao-cli',
@@ -356,6 +455,10 @@ module.exports = {
         {
           type: 'category',
           label: 'WalletConnect',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/walletconnect',
+          },
           items: [
             'reference-client/walletconnect/walletconnect',
             'reference-client/walletconnect/cat-wc',
@@ -367,6 +470,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Troubleshooting',
+          link: {
+            type: 'generated-index',
+            slug: '/reference-client/troubleshooting',
+          },
           items: [
             'reference-client/troubleshooting/check-if-things-are-working',
             'reference-client/troubleshooting/checking-farm-health',
@@ -383,6 +490,10 @@ module.exports = {
     {
       type: 'category',
       label: 'Contributing',
+      link: {
+        type: 'generated-index',
+        slug: '/contribution',
+      },
       items: [
         'contribution/using-github',
       ],
@@ -548,6 +659,10 @@ module.exports = {
               label: 'Game Rules',
               collapsible: true,
               collapsed: true,
+              link: {
+                type: 'generated-index',
+                slug: '/guides/gaming/game-rules',
+              },
               items: [
                 'guides/chia-gaming/gaming-california-poker-rules',
                 'guides/chia-gaming/gaming-space-poker-rules',
@@ -561,6 +676,10 @@ module.exports = {
               label: 'Gaming RFP',
               collapsible: true,
               collapsed: true,
+              link: {
+                type: 'generated-index',
+                slug: '/guides/gaming/rfp',
+              },
               items: [
                 'guides/chia-gaming/gaming-partner-rfp',
                 'guides/chia-gaming/gaming-partner-rfp-qa',
