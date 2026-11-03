@@ -1,47 +1,75 @@
+/* Navy hero band, as on chia.net's dark heroes */
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background-image: url('/img/hero-background-light.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
+  padding: 6rem 0 5rem;
+  text-align: left;
+  color: var(--chia-white);
+  background: var(--chia-navy);
+  border-bottom: 1px solid rgb(250 251 252 / 12%);
 }
 
-[data-theme='dark'] .heroBanner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(44, 50, 60, 0.7); /* Morpheus with 70% opacity */
-  z-index: 1;
-  pointer-events: none;
+.heroBanner :global(.hero__title) {
+  max-width: 48rem;
+  margin-bottom: 1.25rem;
+  color: var(--chia-white);
+  font-size: 3.75rem;
+  line-height: 1.04;
 }
 
-[data-theme='dark'] .heroBanner > * {
-  position: relative;
-  z-index: 2;
+.heroEyebrow {
+  color: var(--chia-green-light);
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroLede {
+  max-width: 40rem;
+  margin-bottom: 2.25rem;
+  color: rgb(250 251 252 / 75%);
+  font-size: 1.1875rem;
+  line-height: 1.6;
 }
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
 }
 
-@media screen and (max-width: 440px) {
-  .heroTitle {
-    font-size: 2rem;
+.buttons :global(.button) {
+  --chia-focus: var(--chia-white);
+  min-height: 2.75rem;
+}
+
+/* Green fill, navy label; white on hover */
+.buttonInverse {
+  border: 1px solid var(--chia-green-light);
+  background: var(--chia-green-light);
+  color: var(--chia-navy);
+}
+
+.buttonInverse:hover {
+  border-color: var(--chia-white);
+  background: var(--chia-white);
+  color: var(--chia-navy);
+}
+
+.buttonInverseOutline {
+  border: 1px solid rgb(250 251 252 / 35%);
+  background: transparent;
+  color: var(--chia-white);
+}
+
+.buttonInverseOutline:hover {
+  border-color: var(--chia-white);
+  background: rgb(250 251 252 / 8%);
+  color: var(--chia-white);
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 4rem 0 3.5rem;
   }
-}
 
-.featureItem {
-  margin-bottom: 50px;
+  .heroBanner :global(.hero__title) {
+    font-size: 2.75rem;
+  }
 }
