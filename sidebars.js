@@ -4,20 +4,18 @@ module.exports = {
       type: 'category',
       label: 'Chia Blockchain',
       link: {
-        type: 'generated-index',
-        slug: '/chia-blockchain',
+        type: 'doc',
+        id: 'chia-blockchain/introduction',
       },
       items: [
-        'chia-blockchain/introduction',
         {
           type: 'category',
           label: 'Green Paper',
           link: {
-            type: 'generated-index',
-            slug: '/chia-blockchain/green-paper',
+            type: 'doc',
+            id: 'chia-blockchain/green-paper/green-paper-abstract',
           },
           items: [
-            'chia-blockchain/green-paper/green-paper-abstract',
             'chia-blockchain/green-paper/constants-variables-notation',
             'chia-blockchain/green-paper/green-paper-introduction',
             'chia-blockchain/green-paper/longest-chain-protocols',
@@ -33,11 +31,10 @@ module.exports = {
           type: 'category',
           label: 'Architecture',
           link: {
-            type: 'generated-index',
-            slug: '/chia-blockchain/architecture',
+            type: 'doc',
+            id: 'chia-blockchain/architecture/architecture-overview',
           },
           items: [
-            'chia-blockchain/architecture/architecture-overview',
             'chia-blockchain/architecture/full-nodes',
             'chia-blockchain/architecture/farmers',
             'chia-blockchain/architecture/harvesters',
@@ -68,21 +65,19 @@ module.exports = {
           type: 'category',
           label: 'Consensus',
           link: {
-            type: 'generated-index',
-            slug: '/chia-blockchain/consensus',
+            type: 'doc',
+            id: 'chia-blockchain/consensus/consensus-intro',
           },
           items: [
-            'chia-blockchain/consensus/consensus-intro',
             'chia-blockchain/consensus/proof-of-space-1.0',
             {
               type: 'category',
               label: 'Proof of Space 2.0',
               link: {
-                type: 'generated-index',
-                slug: '/chia-blockchain/consensus/proof-of-space-2.0',
+                type: 'doc',
+                id: 'chia-blockchain/consensus/proof-of-space-2.0/new-proof-introduction',
               },
               items: [
-                'chia-blockchain/consensus/proof-of-space-2.0/new-proof-introduction',
                 'chia-blockchain/consensus/proof-of-space-2.0/new-proof-plotting-requirements',
                 'chia-blockchain/consensus/proof-of-space-2.0/new-proof-farming-requirements',
                 'chia-blockchain/consensus/proof-of-space-2.0/new-proof-timeline',
@@ -114,11 +109,10 @@ module.exports = {
               type: 'category',
               label: 'Block Validation',
               link: {
-                type: 'generated-index',
-                slug: '/chia-blockchain/consensus/block-validation',
+                type: 'doc',
+                id: 'chia-blockchain/consensus/block-validation/block-validation',
               },
               items: [
-                'chia-blockchain/consensus/block-validation/block-validation',
                 'chia-blockchain/consensus/block-validation/block-format',
                 'chia-blockchain/consensus/block-validation/block-rewards',
               ],
@@ -133,11 +127,10 @@ module.exports = {
           type: 'category',
           label: 'Coin Set Model',
           link: {
-            type: 'generated-index',
-            slug: '/chia-blockchain/coin-set-model',
+            type: 'doc',
+            id: 'chia-blockchain/coin-set-model/intro',
           },
           items: [
-            'chia-blockchain/coin-set-model/intro',
             'chia-blockchain/coin-set-model/costs',
             'chia-blockchain/coin-set-model/conditions',
             'chia-blockchain/coin-set-model/spend-bundles',
@@ -152,11 +145,10 @@ module.exports = {
           type: 'category',
           label: 'Keys',
           link: {
-            type: 'generated-index',
-            slug: '/chia-blockchain/keys',
+            type: 'doc',
+            id: 'chia-blockchain/keys/architecture',
           },
           items: [
-            'chia-blockchain/keys/architecture',
             'chia-blockchain/keys/keys-and-signatures',
             'chia-blockchain/keys/plot-ids',
             'chia-blockchain/keys/plot-public-keys',
@@ -166,11 +158,10 @@ module.exports = {
           type: 'category',
           label: 'Protocol',
           link: {
-            type: 'generated-index',
-            slug: '/chia-blockchain/protocol',
+            type: 'doc',
+            id: 'chia-blockchain/protocol/protocol',
           },
           items: [
-            'chia-blockchain/protocol/protocol',
             'chia-blockchain/protocol/networking-protocol',
             'chia-blockchain/protocol/serialization-protocol',
             'chia-blockchain/protocol/harvester-protocol',
@@ -179,11 +170,10 @@ module.exports = {
               type: 'category',
               label: 'Pool Protocol',
               link: {
-                type: 'generated-index',
-                slug: '/chia-blockchain/protocol/pool',
+                type: 'doc',
+                id: 'chia-blockchain/protocol/pool/pool-protocol',
               },
               items: [
-                'chia-blockchain/protocol/pool/pool-protocol',
                 'chia-blockchain/protocol/pool/pool-protocol-specification',
               ],
             },
@@ -291,12 +281,10 @@ module.exports = {
           type: 'category',
           label: 'Developers',
           link: {
-            type: 'generated-index',
-            slug: '/cloud-wallet/developers',
+            type: 'doc',
+            id: 'cloud-wallet/developer-api',
           },
-          items: [
-            'cloud-wallet/developer-api',
-          ],
+          items: [],
         },
         {
           type: 'category',
@@ -318,11 +306,10 @@ module.exports = {
       type: 'category',
       label: 'Chia Signer App',
       link: {
-        type: 'generated-index',
-        slug: '/chia-signer',
+        type: 'doc',
+        id: 'chia-signer/getting-started',
       },
       items: [
-        'chia-signer/getting-started',
         'chia-signer/faq',
       ]
     },
@@ -368,11 +355,10 @@ module.exports = {
           type: 'category',
           label: 'Plotting',
           link: {
-            type: 'generated-index',
-            slug: '/reference-client/plotting',
+            type: 'doc',
+            id: 'reference-client/plotting/plotting-basics',
           },
           items: [
-            'reference-client/plotting/plotting-basics',
             'reference-client/plotting/plotting-hardware',
             'reference-client/plotting/plotting-software',
             'reference-client/plotting/plotting-compression',
@@ -385,11 +371,10 @@ module.exports = {
           type: 'category',
           label: 'Farming',
           link: {
-            type: 'generated-index',
-            slug: '/reference-client/farming',
+            type: 'doc',
+            id: 'reference-client/farming/farming-basics',
           },
           items: [
-            'reference-client/farming/farming-basics',
             'reference-client/farming/farming-compressed-plots',
             'reference-client/farming/farming-many-machines',
             'reference-client/farming/pool-farming',
@@ -403,11 +388,10 @@ module.exports = {
           type: 'category',
           label: 'RPC Reference',
           link: {
-            type: 'generated-index',
-            slug: '/reference-client/rpc-reference',
+            type: 'doc',
+            id: 'reference-client/rpc-reference/rpc',
           },
           items: [
-            'reference-client/rpc-reference/rpc',
             'reference-client/rpc-reference/dao-rpc',
             'reference-client/rpc-reference/daemon-rpc',
             'reference-client/rpc-reference/datalayer-rpc',
@@ -427,11 +411,10 @@ module.exports = {
           type: 'category',
           label: 'CLI Reference',
           link: {
-            type: 'generated-index',
-            slug: '/reference-client/cli-reference',
+            type: 'doc',
+            id: 'reference-client/cli-reference/cli',
           },
           items: [
-            'reference-client/cli-reference/cli',
             'reference-client/cli-reference/dao-cli',
             'reference-client/cli-reference/datalayer-cli',
             'reference-client/cli-reference/did-cli',
@@ -456,11 +439,10 @@ module.exports = {
           type: 'category',
           label: 'WalletConnect',
           link: {
-            type: 'generated-index',
-            slug: '/reference-client/walletconnect',
+            type: 'doc',
+            id: 'reference-client/walletconnect/walletconnect',
           },
           items: [
-            'reference-client/walletconnect/walletconnect',
             'reference-client/walletconnect/cat-wc',
             'reference-client/walletconnect/nft-wc',
             'reference-client/walletconnect/did-wc',
@@ -491,12 +473,10 @@ module.exports = {
       type: 'category',
       label: 'Contributing',
       link: {
-        type: 'generated-index',
-        slug: '/contribution',
+        type: 'doc',
+        id: 'contribution/using-github',
       },
-      items: [
-        'contribution/using-github',
-      ],
+      items: [],
     },
   ],
   guides: [
@@ -677,11 +657,10 @@ module.exports = {
               collapsible: true,
               collapsed: true,
               link: {
-                type: 'generated-index',
-                slug: '/guides/gaming/rfp',
+                type: 'doc',
+                id: 'guides/chia-gaming/gaming-partner-rfp',
               },
               items: [
-                'guides/chia-gaming/gaming-partner-rfp',
                 'guides/chia-gaming/gaming-partner-rfp-qa',
               ],
             },
