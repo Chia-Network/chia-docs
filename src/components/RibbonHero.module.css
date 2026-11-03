@@ -1,4 +1,4 @@
-/* Navy hero band, as on chia.net's dark heroes */
+/* Navy hero band with the ribbon art, as on chia.net's dark heroes. Used by the homepage and the 404. */
 .heroBanner {
   --hero-text-width: 42rem;
   --hero-fade-floor: 0.25;
@@ -13,6 +13,11 @@
   color: var(--chia-white);
   background: var(--chia-navy);
   border-bottom: 1px solid rgb(250 251 252 / 12%);
+}
+
+/* When the hero is the whole page, it fills the space down to the footer. */
+.heroPage {
+  flex-grow: 1;
 }
 
 .heroContent {

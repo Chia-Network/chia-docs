@@ -12,6 +12,8 @@
 
 /* One destination per card: the whole card is the link */
 .featureCard {
+  --chia-ink-soft: var(--chia-card-copy);
+
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
