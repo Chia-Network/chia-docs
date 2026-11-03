@@ -64,9 +64,8 @@ const katex = require('rehype-katex').default;
       ({
         image: '/img/chia-share.png',
         navbar: {
-          title: 'Docs',
           logo: {
-            alt: 'Chia',
+            alt: 'Chia Docs',
             src: '/svg/chia-logo.svg',
             srcDark: '/svg/chia-logo-on-dark.svg',
             width: 96,

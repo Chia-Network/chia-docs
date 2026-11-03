@@ -308,22 +308,13 @@ hr {
 
 .navbar__brand {
   flex-shrink: 0;
-  gap: 0.25rem;
+  margin-right: 1.5rem;
 }
 
+/* 96px wide: the wordmark's minimum on screen */
 .navbar__logo {
   height: 2.3125rem;
-  margin-right: 0.625rem;
-}
-
-.navbar__title {
-  padding-left: 0.75rem;
-  border-left: 1px solid var(--chia-line);
-  color: var(--chia-ink);
-  font-family: var(--chia-font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.75rem;
+  margin-right: 0;
 }
 
 .navbar__link {
@@ -332,13 +323,9 @@ hr {
   white-space: nowrap;
 }
 
-/* Between the mobile breakpoint and a wide window the full navbar is crowded: drop the "Docs" title
-   (the wordmark stays) and tighten the item spacing so nothing wraps or overlaps. */
-@media (min-width: 997px) and (max-width: 1279px) {
-  .navbar__title {
-    display: none;
-  }
-
+/* Between the mobile breakpoint and a wide window the full navbar is crowded: tighten the item
+   spacing and the search box so nothing wraps or overlaps. */
+@media (min-width: 997px) and (max-width: 1199px) {
   .navbar__item {
     padding-inline: 0.4375rem;
   }
