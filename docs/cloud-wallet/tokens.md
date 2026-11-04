@@ -78,7 +78,7 @@ Every CAT is backed by XCH. Each token you issue uses 1,000 mojos (0.000000001 X
    - `Name`: 2 to 32 characters
    - `Symbol`: 1 to 10 characters
    - `Type`: `Single Issuance` or `Multi Issuance` (see [Issuance types](#issuance-types))
-   - `Revocable`: shown only for `Multi Issuance`, and on by default. If enabled, tokens can be revoked by the issuer at any time.
+   - `Revocable`: shown only for `Multi Issuance`, and on by default. If enabled, tokens can be revoked by the issuer at any time. Vaults holding the token get an email alert when it is revoked (see the Watchtowers section of the [FAQ](/cloud-wallet/faq)).
    - `Amount`: the number of tokens to issue
    - `Fee`: an optional network fee in XCH. `Spendable balance` shows the XCH available in the selected vault.
 
