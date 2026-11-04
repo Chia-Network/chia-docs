@@ -66,7 +66,7 @@ The original Chia Signer app also followed the same flow, but we never labeled i
 
 ## Clear signing
 
-The Chia Signer app takes the next step. First, it receives the purported transaction info from the wallet, then it queries the blockchain to retrieve the same information. If there is any mismatch, the transaction is assumed to be malicious. Clear signing provides a provable on-chain verification of the transaction information.
+The Chia Signer app takes the next step. First, it receives the purported transaction info from the wallet, then it reconstructs the transaction from its parts in order to verify that the information is accurate. If there is any mismatch, the transaction is assumed to be malicious. Clear signing provides a provable on-chain verification of the transaction information.
 
 On both the iOS and Android versions of the Chia Signer app, clear signing is enabled by default. Alice will see a badge in the signature request, which indicates that clear signing is in use.
 
