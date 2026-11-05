@@ -59,18 +59,12 @@ const FeatureList = [
 
 function Feature({ Svg, title, description, dest_url, svgClass }) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Link href={dest_url}>
-          <Svg className={svgClass} alt={title} />
-        </Link>
-      </div>
-      <div className="text--center padding-horiz--md feature-item">
-        <h3>
-          <Link href={dest_url}>{title}</Link>
-        </h3>
-        <p>{description}</p>
-      </div>
+    <div className={clsx('col col--4', styles.featureCol)}>
+      <Link href={dest_url} className={styles.featureCard}>
+        <Svg className={svgClass} aria-hidden="true" />
+        <h3 className={styles.featureTitle}>{title}</h3>
+        <p className={styles.featureDescription}>{description}</p>
+      </Link>
     </div>
   );
 }

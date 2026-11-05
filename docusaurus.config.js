@@ -15,6 +15,22 @@ const katex = require('rehype-katex').default;
       },
     },
     favicon: '/svg/favicon.svg',
+    headTags: [
+      {
+        tagName: 'link',
+        attributes: {
+          rel: 'apple-touch-icon',
+          href: '/apple-touch-icon.png',
+        },
+      },
+      {
+        tagName: 'meta',
+        attributes: {
+          name: 'theme-color',
+          content: '#122957',
+        },
+      },
+    ],
     organizationName: 'Chia-Network',
     projectName: 'chia-docs',
     trailingSlash: true,
@@ -46,12 +62,14 @@ const katex = require('rehype-katex').default;
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        image: '/img/chia-logo-yellow.png',
+        image: '/img/chia-share.png',
         navbar: {
-          title: 'Chia Docs',
           logo: {
-            alt: 'Chia Icon',
-            src: '/svg/chia-leaf.svg',
+            alt: 'Chia Docs',
+            src: '/svg/chia-logo.svg',
+            srcDark: '/svg/chia-logo-on-dark.svg',
+            width: 96,
+            height: 37,
           },
           items: [
             {
@@ -94,6 +112,14 @@ const katex = require('rehype-katex').default;
           ],
         },
         footer: {
+          style: 'dark',
+          logo: {
+            alt: 'Chia',
+            src: '/svg/chia-logo-on-dark.svg',
+            href: 'https://www.chia.net/',
+            width: 96,
+            height: 37,
+          },
           links: [
             {
               title: 'Approach',
