@@ -153,6 +153,12 @@ In a Web3 context, a watchtower is a program that monitors a blockchain for even
 
 We plan to deploy watchtowers to notify users of incoming offers, incoming transactions, and transactions that were affected by a blockchain re-org. We may implement watchtowers for further events in the future.
 
+### Will I be told if an issuer revokes my tokens?
+
+Yes. If the issuer of a revocable token revokes tokens held in your vault, the watchtower emails you right away. The email names the vault, the asset and amount, the issuer's address, the time, and the reason the issuer gave, if any. Contact the issuer for more information about the revocation.
+
+This alert is on by default. You can turn it off with the `Tokens Revoked` switch in the vault's watchtower notification settings. It is always sent immediately and is never batched into a digest. See [Tokens](/cloud-wallet/tokens) for how revocable tokens work.
+
 ### Can I develop my own watchtower?
 
 Yes! The Chia blockchain is a public ledger, so anyone can build software to monitor it. We may open-source some of our watchtower code as well, which would make it easier for community members to create custom watchtowers for their own needs.
