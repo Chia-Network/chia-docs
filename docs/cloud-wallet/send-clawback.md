@@ -36,7 +36,7 @@ For a short conceptual overview, see [Clawback](/cloud-wallet/tooltips#clawback)
 
 3. Click `Send XCH` (or `Send` for your vault’s primary asset).
 
-4. Enter the recipient, amount, fee, and optional memo as usual.
+4. Under `Send to`, enter the `Recipient` (an address, an XCHandle such as `@alice`, or a contact from your Address Book), then the `Amount`, the `Fee`, and an optional `Memo`.
 
    When the network is busy, include a fee that is likely to confirm promptly. Clawback actions (`Claw Back`, `Finalize`, and later `Push Through`) are only available after this send confirms on-chain—not while it is still in the mempool. If confirmation takes longer than the clawback window you set, the window can expire before you can use those options, which defeats the purpose of clawback.
 
@@ -53,7 +53,7 @@ For a short conceptual overview, see [Clawback](/cloud-wallet/tooltips#clawback)
 
 6. Click `Send`, then sign the transaction.
 
-After the send confirms on-chain, the outbound transfer shows as pending while clawback is active. Open the transaction for details such as `Clawback Expiry` and a settle countdown (for example `Settles` with a relative time). From that details screen you can `Claw Back Transaction` or `Finalize Transaction` while the window is open.
+After the send confirms on-chain, the vault's activity list shows it as `Pending` with a countdown (for example `Settles in 29 minutes`). Open the transaction for its details: the recipient, the memo, `State`, `Confirmation Height`, `Fee`, and `Clawback Expiry` (the last moment you can claw the payment back). From that screen you can `Claw Back Transaction` or `Finalize Transaction` while the window is open.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/send-clawback-02_tx_details_light.png" alt="Clawback transaction details with Claw Back and Finalize actions" width="100%" className="theme-image-light"/>
@@ -68,7 +68,7 @@ Use this if you sent to the wrong address or need to reclaim the XCH while the w
 
 2. Choose `Claw Back Transaction`.
 
-3. Enter a fee if prompted, then confirm `Claw Back Transaction` and sign.
+3. The dialog shows the amount and the receiver's address. Enter a `Fee` if you want one, click `Claw Back Transaction`, and sign.
 
 The funds return to your vault after the clawback transaction confirms. This requires another on-chain fee and signature.
 
@@ -97,7 +97,7 @@ The app may show: you can no longer claw back this transaction, but you can stil
 
 ## Troubleshooting
 
-- Clawback fields appear only on XCH vault Send; token and NFT sends do not include clawback at this time
+- The `Clawback` card is on the XCH, token, and NFT send forms of a vault
 - Set at least one of Days, Hours, or Minutes greater than zero to enable clawback
 - Prefer recipients on Cloud Wallet or another clawback-capable wallet (such as Sage)
 - `Claw Back`, `Finalize`, and `Push Through` appear only after the original send confirms on-chain (not while it is in the mempool)

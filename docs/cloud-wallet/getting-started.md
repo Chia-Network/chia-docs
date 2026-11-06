@@ -44,7 +44,7 @@ Set up a Chia Cloud Wallet at [vault.chia.net](https://vault.chia.net/). You wil
   <img src="/img/cloud-wallet/getting-started-05_add_vault_dark.png" alt="Add your first vault" width="100%" className="theme-image-dark"/>
 </div>
 
-2. Name the vault.
+2. On **Setup Keys**, name the vault.
 
 3. Choose a spend key. **App (Hardware Key)** is the usual choice. On the same device, use **Link via Chia Signer App**. On another device, scan the QR code. Create the key in the Signer app first. See [Chia Signer](/chia-signer/getting-started).
 
@@ -53,34 +53,34 @@ Set up a Chia Cloud Wallet at [vault.chia.net](https://vault.chia.net/). You wil
   <img src="/img/cloud-wallet/getting-started-06_create_vault_dark.png" alt="Name the vault and link a Chia Signer spend key" width="100%" className="theme-image-dark"/>
 </div>
 
-Use **Passkey** only if you do not have an iPhone or Android phone. That passkey is also your login. Losing it affects both signing in and signing transactions.
+Use **Passkey** only if you do not have an iPhone or Android phone. Choose an existing passkey on this device or **Add a New Passkey**. If you pick your login passkey, losing it affects both signing in and signing transactions.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/getting-started-06_passkey_spend_light.png" alt="Passkey selected as the vault spend key" width="100%" className="theme-image-light"/>
   <img src="/img/cloud-wallet/getting-started-06_passkey_spend_dark.png" alt="Passkey selected as the vault spend key" width="100%" className="theme-image-dark"/>
 </div>
 
-4. Leave **Watchtower Notifications** on so you get an email if someone starts a recovery. Add another email address when you can. See [Watchtowers](/cloud-wallet/faq#watchtowers). Click **Next**.
+4. Choose a recovery key. **App (Software key)** keeps it in the Chia Signer app; its QR code appears once the spend key is linked. With **Recovery Phrase**, write down the 24 words, in order, and store them somewhere safe. Chia does not keep a copy, and the words are only shown once. You need them to recover the vault. See [Recovery](/cloud-wallet/recovery).
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/getting-started-07_watchtower_light.png" alt="Watchtower notifications enabled on create vault" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/getting-started-07_watchtower_dark.png" alt="Watchtower notifications enabled on create vault" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/getting-started-08_recovery_phrase_light.png" alt="24-word recovery phrase and the recovery clawback" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-08_recovery_phrase_dark.png" alt="24-word recovery phrase and the recovery clawback" width="100%" className="theme-image-dark"/>
 </div>
 
-5. Write down the 24-word recovery phrase, in order, and store it somewhere safe. Chia does not keep a copy. You need these words to recover the vault. See [Recovery](/cloud-wallet/recovery).
+5. Set the **Recovery Clawback**: how long you have to cancel a recovery if your recovery key is stolen. The default, 12 hours, is fine for most people. Details are in [Recovery](/cloud-wallet/recovery). Click **Next**.
 
-<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/getting-started-08_recovery_phrase_light.png" alt="24-word recovery phrase" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/getting-started-08_recovery_phrase_dark.png" alt="24-word recovery phrase" width="100%" className="theme-image-dark"/>
-</div>
-
-6. You can set a recovery clawback window before the vault is created. That is how long you have to cancel a recovery if the phrase is stolen. The default is fine for most people. Details are in [Recovery](/cloud-wallet/recovery).
-
-7. Enter the highlighted words to confirm the phrase, check the box, and click **Create**.
+6. If you chose a recovery phrase, enter the highlighted words to confirm it, check the box, and click **Next**.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/getting-started-10_verify_phrase_light.png" alt="Verify the recovery phrase before creating the vault" width="100%" className="theme-image-light"/>
   <img src="/img/cloud-wallet/getting-started-10_verify_phrase_dark.png" alt="Verify the recovery phrase before creating the vault" width="100%" className="theme-image-dark"/>
+</div>
+
+7. On **Notification Preferences**, leave **Watchtower Notifications** on so you get an email about activity on the vault, such as transfers, spends, and clawbacks. Add another email address when you can. See [Watchtowers](/cloud-wallet/faq#watchtowers). Click **Create Vault**.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/getting-started-07_watchtower_light.png" alt="Watchtower notifications on Notification Preferences" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/getting-started-07_watchtower_dark.png" alt="Watchtower notifications on Notification Preferences" width="100%" className="theme-image-dark"/>
 </div>
 
 8. The vault is minted in about a minute or two. The receive address appears when that finishes.

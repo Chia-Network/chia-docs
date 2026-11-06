@@ -28,7 +28,7 @@ You need a Cloud Wallet account and at least one vault. If you have not created 
   <img src="/img/cloud-wallet/tokens-01_vault_tab_dark.png" alt="Vault Tokens tab listing CAT balances" width="100%" className="theme-image-dark"/>
 </div>
 
-3. Click a token row to open its asset page. The page shows the balance, the vault address, and recent transactions for that token.
+3. Click a token row to open its asset page. The page shows the balance, the vault's receive address, and recent transactions for that token, with `Send CAT`, `Create Offer`, and `Manage Coins`.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/tokens-02_asset_light.png" alt="Token asset page with balance, address, and transactions" width="100%" className="theme-image-light"/>
@@ -41,7 +41,7 @@ If the vault has not received any tokens yet, the tab shows `No tokens yet`. Tok
 
 1. From the token asset page, click `Send CAT`.
 
-2. Under `Send To`, enter or paste the destination `Address`, pick a saved contact, or use `Scan QR Code`. Addresses start with `xch` on mainnet.
+2. Under `Send to`, enter the `Recipient`: paste an address (addresses start with `xch` on mainnet), type an XCHandle such as `@alice`, pick a saved contact, or use `Scan QR code`.
 
 3. Under `Amount to send`, enter the `Amount` and an optional `Fee`.
 
@@ -177,7 +177,7 @@ You can set a display name and ticker (token symbol) for a CAT you hold. This on
    - `Token Symbol` (1 to 10 characters)
    - `Asset ID` (exactly 64 characters). You can select a token you already hold, or paste an asset id.
 
-   The form also includes `Display Image`. Image uploads are temporarily disabled. You can still save a display name and ticker without an image.
+   The form also includes `Display Image`: click the image to upload one from your files. It is optional, but recommended.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
   <img src="/img/cloud-wallet/tokens-04_add_details_light.png" alt="Add Token Details form with display name, token symbol, and asset id" width="100%" className="theme-image-light"/>

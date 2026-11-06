@@ -24,6 +24,11 @@ You need a Cloud Wallet account and at least one vault. If you have not created 
 
 3. Use the tabs to switch between `Offers you accepted` and `Offers you created`. From the header you can also start `Accept Offer` or `Create Offer`.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-01_empty_light.png" alt="Offers page before any offers, with Accept Offer and Create Offer" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-01_empty_dark.png" alt="Offers page before any offers, with Accept Offer and Create Offer" width="100%" className="theme-image-dark"/>
+</div>
+
 If you have unsigned offer transactions waiting, a `Pending Signature` section appears above the lists. Use `Sign & Submit` to finish signing, or `Cancel` to discard an unsigned offer.
 
 ## Create an Offer
@@ -36,15 +41,35 @@ If you have unsigned offer transactions waiting, a `Pending Signature` section a
 
 4. Under `You receive`, choose what you want in return with `+ XCH`, `+ Token`, or `+ NFT`. You can request assets you do not already hold. For a token, pick a known token or choose `+ Add token details` and enter its asset ID. For an NFT, enter its `nft1…` ID. Leaving this side empty creates a one-sided offer: whoever takes it pays nothing. When you create a one-sided offer, the app asks you to confirm with `Yes, Continue`.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-02_create_light.png" alt="Create Offer form offering 100 DOCS from a vault for 0.05 XCH" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-02_create_dark.png" alt="Create Offer form offering 100 DOCS from a vault for 0.05 XCH" width="100%" className="theme-image-dark"/>
+</div>
+
 5. Under `Offer Settings`, choose an `Expiration`: `Expires after` (set days, hours, and minutes) or `Never expires`. `Expires after` is selected by default.
 
 6. Under `Coin Splitting`, leave `Split coins first` selected unless you have a reason to change it. The wallet then runs a separate coin-split transaction (with an optional `Split Fee`) so the offer locks only the amount it needs. `Use coins as they are` skips that transaction, but the offer may lock up a large part of your spendable balance until it is taken or canceled.
 
 7. Optionally check `Add a fee to the offer` and enter an `Offer Fee`. This is rarely needed. It is paid from this vault when someone takes the offer.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-03_settings_light.png" alt="Offer Settings with expiration, coin splitting, and the split fee" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-03_settings_dark.png" alt="Offer Settings with expiration, coin splitting, and the split fee" width="100%" className="theme-image-dark"/>
+</div>
+
 8. Click `Create Offer`. Confirm the offer and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-04_confirm_light.png" alt="Confirm dialog for the new offer" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-04_confirm_dark.png" alt="Confirm dialog for the new offer" width="100%" className="theme-image-dark"/>
+</div>
+
 After signing, the offer appears under `Offers you created`. When its status is `Open`, you can share it with the counterparty.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-05_created_light.png" alt="Offers you created with an open offer" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-05_created_dark.png" alt="Offers you created with an open offer" width="100%" className="theme-image-dark"/>
+</div>
 
 ## Share a created Offer
 
@@ -56,6 +81,11 @@ From the created list or the offer details page, open the actions menu while the
 
 Only share offers with people you intend to trade with. Anyone who has the offer string or file may be able to take it if they meet the terms.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-07_actions_light.png" alt="Actions menu of an open offer: View Details, Copy Offer, Download Offer, Share on Dexie, and cancel options" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-07_actions_dark.png" alt="Actions menu of an open offer: View Details, Copy Offer, Download Offer, Share on Dexie, and cancel options" width="100%" className="theme-image-dark"/>
+</div>
+
 ## Accept an Offer
 
 1. From Offers, click `Accept Offer`.
@@ -65,6 +95,11 @@ Only share offers with people you intend to trade with. Anyone who has the offer
 3. Under `Offer Details`, paste the offer string (it starts with `offer1`) into the text area, click `Upload File` to load an offer file, or drop an offer file anywhere on the page.
 
 4. Review `You give` and `You receive` (including any NFT royalty lines). Confirm you have enough balance and any required NFTs.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-06_accept_light.png" alt="Accept Offer with a pasted offer: you give XCH and receive a token" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-06_accept_dark.png" alt="Accept Offer with a pasted offer: you give XCH and receive a token" width="100%" className="theme-image-dark"/>
+</div>
 
 5. Review fees. If the maker included a fee, you may see `Included Fee`. You can also set an `Additional Fee (Optional)` or `Transaction Fee`.
 
@@ -99,6 +134,11 @@ After an off-chain cancel, if the offer becomes open (for example, a pending cre
 1. From `Offers you created` or the offer details page, choose `Cancel On-Chain`.
 
 2. Review the `Cancel Offer On-Chain` dialog and enter a `Transaction Fee` if you want to speed confirmation.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/offers-08_cancel_on_chain_light.png" alt="Cancel Offer On-Chain dialog with a transaction fee" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/offers-08_cancel_on_chain_dark.png" alt="Cancel Offer On-Chain dialog with a transaction fee" width="100%" className="theme-image-dark"/>
+</div>
 
 3. Click `Cancel On-Chain` and sign (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 
