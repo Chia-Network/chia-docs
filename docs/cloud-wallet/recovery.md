@@ -51,6 +51,33 @@ If you lose both your spend key and your recovery key (with no usable backup), n
 
 :::
 
+## Start a recovery in the Cloud Wallet
+
+1. Open the vault, click the more actions button (`⋯`), then click `Recover Vault`.
+
+2. Choose `Choose Instant Recovery` or `Choose Timelocked Recovery`. The buttons stay disabled while the vault has a pending transaction; wait for it to settle first.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/recovery-01_options_light.png" alt="Recover Vault page with Instant Recovery and Timelocked Recovery" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/recovery-01_options_dark.png" alt="Recover Vault page with Instant Recovery and Timelocked Recovery" width="100%" className="theme-image-dark"/>
+</div>
+
+3. On `Setup New Keys`, choose for the `Spend Key` and the `Recovery Key` whether to keep the current one or turn on `Create new`. Set the `New Recovery Clawback` (days, hours, minutes; the app recommends at least 12 hours) and, optionally, a `Recovery Reason`.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/recovery-02_instant_light.png" alt="Instant Recovery: Setup New Keys with spend key, recovery key, recovery clawback, and reason" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/recovery-02_instant_dark.png" alt="Instant Recovery: Setup New Keys with spend key, recovery key, recovery clawback, and reason" width="100%" className="theme-image-dark"/>
+</div>
+
+Timelocked Recovery uses the same first step:
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/recovery-03_timelocked_light.png" alt="Timelocked Recovery: Setup New Keys" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/recovery-03_timelocked_dark.png" alt="Timelocked Recovery: Setup New Keys" width="100%" className="theme-image-dark"/>
+</div>
+
+4. Click `Next`, check `Review & Start Recovery`, and sign: Instant Recovery with your current spend key, Timelocked Recovery with your recovery key.
+
 ## Which should I use?
 
 | Situation                                                                          | Path                                                                                                                                                                                                                                                   |

@@ -24,11 +24,11 @@ You can open Coin Management from a vault or from a specific token.
 
 1. Log in to your [Chia Cloud Wallet](https://vault.chia.net/) account and open the vault.
 
-2. Open the vault `More` menu and click `Manage Coins`:
+2. Click the vault's more actions button (`⋯`, next to `Send XCH` and `Offers`), then click `Manage Coins`:
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/coin-management-01_menu_light.png" alt="Open Manage Coins from the vault More menu" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/coin-management-01_menu_dark.png" alt="Open Manage Coins from the vault More menu" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/coin-management-01_menu_light.png" alt="Manage Coins in the vault's more actions menu" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/coin-management-01_menu_dark.png" alt="Manage Coins in the vault's more actions menu" width="100%" className="theme-image-dark"/>
 </div>
 
 The XCH coins screen is titled `Manage Coins`.
