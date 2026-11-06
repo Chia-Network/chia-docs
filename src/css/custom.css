@@ -793,6 +793,12 @@ c-ol, c-li { list-style: none; margin: 0; padding-right: 20px; }
 }
 
 /* Theme-aware images for light/dark mode */
+.theme-image-light,
+.theme-image-dark {
+  border: 1px solid var(--chia-line);
+  box-shadow: var(--chia-shadow);
+}
+
 .theme-image-dark {
   display: none;
 }
