@@ -7,17 +7,17 @@ slug: /reference-client/troubleshooting/farming-faq
 
 如果是首次使用 Chia 并想知道软件是否正常工作时，以下是一些建议，可以帮助到你。
 
-首先，需要修改配置以进行额外的日志记录。 The configurations can be found in `config.yaml`. This file is located in `chia/mainnet/config.yaml`.
+首先，需要修改配置以进行额外的日志记录。 The configurations can be found in `config.yaml`. This file is usually located in `chia/mainnet/config/config.yaml`.
 
-The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/your username)/.chia/mainnet/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
+The location of the `.chia` folder varies, On windows you'll want to look in `C:/Users/(your username)/.chia/mainnet/config/config.yaml`. On Mac, this file is located in `/Users/(your username)/.chia/mainnet/config/config.yaml`.
 
 在修改配置之前，请关闭 Chia。 Open `config.yaml` and edit the first `log_level`, setting it `INFO` instead of `WARNING`. 保存文件。
 
-现在，重新启动 Chia。 等待20分钟让它运行。
+现在，重新启动 Chia。等待20分钟让它运行。
 
 在 Chia 运行时打开日志文件，将看到额外的消息。 You can find `debug.log` in the `log` directory right next to `config` directory accessed earlier.
 
-日志文件包含许多信息。 一旦日志填满了 20mb，将创建另一个日志文件。 如果有太多日志文件，可以删除其中一些。
+日志文件包含许多信息。 Once a log fills to roughly 50mb another is created. 如果有太多日志文件，可以删除其中一些。
 
 Inside what you are looking for are these lines:
 
@@ -25,10 +25,10 @@ Inside what you are looking for are these lines:
 _07:02:41.663 harvester src.harvester.harvester : INFO 1 plots were eligible for farming f53c496e80... Found 0 proofs. Time: 0.00500 s. Total 8 plots_
 ```
 
-这表示 Chia 正在工作。 初筛系统有2个部分。 Chia 发现1个地块通过了第一部分，现在它会查看内部是否有一个预先计算的“证明”，可以在最快的时间内进行交易（2-3秒）。 如果它在您的地块中保留了一个证明，那么您就赢了。 许多时候它会显示 0 个证明。 但是它意味着已经在正常工作了。 这是运气和时间的因素。 在该行的末尾，它将指示软件包含了多少地块。
+这表示 Chia 正在工作。初筛系统有2个部分。 Chia 发现1个地块通过了第一部分，现在它会查看内部是否有一个预先计算的“证明”，可以在最快的时间内进行交易（2-3秒）。如果它在您的地块中保留了一个证明，那么您就赢了。许多时候它会显示 0 个证明。但是它意味着已经在正常工作了。这是运气和时间的因素。在该行的末尾，它将指示软件包含了多少地块。
 
 :::info
-Another way to ensure your farm is operational is checking against a pool. 定期收到的部分币会给您带来安心。 相比之下，独自耕种可能需要等待数天、数周或数月才能获胜，而在此期间您会一直在想是否正确设置了一切。 Checkout [pool-farming](/reference-client/farming/pool-farming).
+Another way to ensure your farm is operational is checking against a pool. 定期收到的部分币会给您带来安心。相比之下，独自耕种可能需要等待数天、数周或数月才能获胜，而在此期间您会一直在想是否正确设置了一切。 Checkout [pool-farming](/reference-client/farming/pool-farming).
 :::
 
 ## 日志文件中的正常信息是什么？
@@ -61,4 +61,4 @@ _09:32:08.211 harvester src.harvester.harvester : INFO 0 plots were eligible for
 
 ---
 
-最后一行显示在当前时间 09:32:08.211 有 8 个地块正在进行耕种，其中 0 个地块符合条件。 这仍然意味着软件已识别出地块并正在进行耕种。
+最后一行显示在当前时间 09:32:08.211 有 8 个地块正在进行耕种，其中 0 个地块符合条件。这仍然意味着软件已识别出地块并正在进行耕种。

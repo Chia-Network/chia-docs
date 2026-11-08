@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Rather than simply copy what other blockchains had already done, we modeled our NFT standard after the traditional art world. Art is far from the only use case for Chia NFTs, but it was our starting point nonetheless.
 
-This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/pull/18), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0005.md). It will demonstrate this functionality using both the command-line and RPCs on Windows, MacOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's reference wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
+This document will guide you through the process of creating DIDs that conform to [Chia's DID standard](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0004.md), as well as minting NFTs that adhere to [Chia's NFT standard](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0005.md). It will demonstrate this functionality using both the command-line and RPCs on Windows, MacOS and Linux. It will also show you how to verify that your NFTs are working as designed in Chia's reference wallet. We'll use the testnet for most of this guide, but we'll also give you some tips on deploying NFTs on Chia's mainnet.
 
 For detailed instructions on running each of the commands from this tutorial, see:
 
@@ -63,7 +63,7 @@ The cost for minting and modifying NFTs is significantly higher. The following c
 If the mempool is not full, then a 1-mojo fee will be sufficient for any of these spends to be included in the next transaction block. To view the current status of the mempool, see the [Mempool Cost](https://dashboard.chia.net/d/46EAA05E/mempool-transactions-and-fees?orgId=1&viewPanel=40) table on our dashboard site. (If the green line representing the current mempool cost is close to the red line representing the maximum cost, then the mempool is full, and the following table should be used.)
 
 | Operation                       | Cost (approx) | Min fee (mojos) | Cost in USD at $30/XCH |
-| :------------------------------ | ------------: | :-------------- | :--------------------- |
+|:------------------------------- | -------------:|:--------------- |:---------------------- |
 | Minting NFT without DID         |    53 million | 265 million     | $0.00795               |
 | Minting NFT with DID            |   123 million | 615 million     | $0.01845               |
 | Adding a URI to NFT without DID |    41 million | 205 million     | $0.00615               |

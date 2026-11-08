@@ -67,13 +67,13 @@ The **BladeBit CUDA** plotter requires an NVIDIA GPU with CUDA capability 5.2 an
 
 The following table lists the general plotter types, along with their requirements, for creating k32 plots:
 
-| Processor +<br/>Storage | Plotter <br/> Name(s)                    | Chia <br/> Version | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
-| :---------------------- | :--------------------------------------- | :----------------- | :-------------- | :------ | :--------------------- | :----------- | :------------------------ |
-| **GPU +<br/> RAM**      | BladeBit CUDA                            | 2.0                | Yes             | GPU     | None                   | 256          | 1-3                       |
-| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1                | Yes             | GPU     | 180                    | 128          | 3-5                       |
-| **CPU +<br/> RAM**      | BladeBit RAM                             | 2.0                | Yes             | CPU     | None                   | 416          | 2-5                       |
-| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                    | 4            | 15-60                     |
-| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0                | No              | CPU     | 512                    | 4            | > 60                      |
+| Processor +<br/>Storage | Plotter <br/> Name(s) | Chia <br/> Version  | Comp.<br/>Plots | Compute | Temp<br/>Disk<br/>(GB) | RAM<br/>(GB) | Plot<br/>Times<br/>(min.) |
+| :---------------------- | :--------------------------------------- | :------------------ | :------------------------------ | :------ | :---------------------------------------- | :------------------------------ | :----------------------------------------------------------- |
+| **GPU +<br/> RAM**      | BladeBit CUDA                            | 2.0 | Yes                             | GPU     | None                                      | 256                             | 1-3                                                          |
+| **GPU +<br/> SSD**      | BladeBit CUDA                            | 2.1 | Yes                             | GPU     | 180                                       | 128                             | 3-5                                                          |
+| **CPU +<br/> RAM**      | BladeBit RAM                             | 2.0 | Yes                             | CPU     | None                                      | 416                             | 2-5                                                          |
+| **CPU +<br/> SSD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0 | No                              | CPU     | 512                                       | 4                               | 15-60                                                        |
+| **CPU +<br/> HDD**      | Bladebit Disk <br/> madMAx <br/> ChiaPoS | 2.0 | No                              | CPU     | 512                                       | 4                               | > 60                                                         |
 
 :::note
 
@@ -127,17 +127,25 @@ Unfortunately, we may not be able to offer support if your machine does not fall
 
 Operating Systems
 
-- Ubuntu 20.04.6 LTS
-- Ubuntu 22.04.02 LTS
-- Ubuntu 23.04
-- RHEL 7.4
-- RHEL 8.7
-- RHEL 9.1
-- Windows 10 version 22H2
-- Windows 11 version 21H2
-- Windows 11 version 22H2
-- Windows Server 2022
-- Windows Server 2019 (version 1809)
+[Ubuntu](https://ubuntu.com/about/release-cycle)
+
+- Ubuntu 22.04 LTS (until May 2027)
+- Ubuntu 24.04 LTS (until May 2029)
+- Ubuntu 26.04 LTS (until May 2031)
+
+[Red Hat Enterprise Linux](https://access.redhat.com/support/policy/updates/errata_legacy#Planning_Guides)
+
+- RHEL 8.10 (until 3Q 2029)
+- RHEL 9.10 (until 2Q 2032)
+- RHEL 10.3 - 10.9 (until 2027-30)
+- RHEL 10.10 (until 2Q 2035)
+
+[Windows](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions)
+
+- Windows 11 version 25H2 (until 12 Oct 2027)
+- Windows 11 version 26H1 (until 14 Mar 2028)
+- Windows Server 2022 (until 14 Oct 2031)
+- Windows Server 2025 (Until 14 Nov 2034)
 
 Systems
 

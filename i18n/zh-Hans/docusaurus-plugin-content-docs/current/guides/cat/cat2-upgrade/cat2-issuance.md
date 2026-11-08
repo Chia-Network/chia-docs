@@ -61,20 +61,20 @@ python -m venv venv
   </TabItem>
   <TabItem value="linux">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   <TabItem value="macos">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   </Tabs>
@@ -156,7 +156,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 - Navigate to [taildatabase.com](https://www.taildatabase.com).
 - Search for your CAT. We'll use Spacebucks for this example.
 - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. For example, Spacebucks had an issuance of 1 billion (1,000,000,000) tokens, which is equivalent to 1 trillion (1,000,000,000,000) XCH mojos.
-- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/genesis_by_coin_id.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a single-issuance CAT, it likely used `genesis_by_coin_id`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/cat_wallet/puzzles/genesis_by_coin_id.clsp). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
@@ -166,7 +166,7 @@ If you are unsure whether your CAT used a single- or multi-issuance TAIL, step 1
 - You can run either the light wallet or a full node.
 - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
 - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-  :::
+:::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -211,7 +211,7 @@ cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4
   <TabItem value="macos">
 
 ```bash
-cats --tail ./reference_tails/delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
+cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to xch1rh6punh4fy70y80ef4g89c9hqvm54dtl0fvyc4ejdccp3y6p04fqn5x8x8 --amount 1000000000000 --as-bytes --select-coin
 ```
 
   </TabItem>
@@ -355,7 +355,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 - Navigate to [taildatabase.com](https://www.taildatabase.com).
 - Search for your CAT.
 - You'll see _Supply_ (and a number) under the title on the right side of your screen. The number indicates the number of tokens issued. However, you need to multiply this number by 1,000 in order to calculate the number of XCH mojos used for the issuance. In this example, we'll use an issuance of 6 million (6,000,000) tokens, which is equivalent to 6 billion (6,000,000,000) XCH mojos.
-- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/delegated_tail.clvm). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
+- Click the _Chialisp_ button. This will show you the TAIL that was used for issuance. If it was a multi-issuance CAT, it likely used `delegated_tail`. If you are unsure, compare the TAIL shown with the [TAIL in GitHub](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/cat_wallet/puzzles/delegated_tail.clsp). Take note of this TAIL as you will need to input its hex version in a subsequent step (if you used one of our reference TAILs, then you already have a copy of this file).
 
 2. Sync a Chia wallet that has at least as many XCH mojos as the original issuance.
 
@@ -365,7 +365,7 @@ You need to use the same public/private key pair to sign the CAT2 issuance as yo
 - You can run either the light wallet or a full node.
 - You are recommended to have enough mojos to cover transaction fees for the reissuance. The recommended amount is five hundred thousand (500,000) mojos per coin to be reissued.
 - You are **required** to have a single coin that is large enough to cover the entire reissuance. Even if your XCH balance is sufficient, it may be separated into multiple small coins. The easiest way to ensure that you have a sufficiently large coin is to send a transaction to yourself of at least the total value required.
-  :::
+:::
 
 3. Use the CAT Admin Tool to select a coin that will be used for issuing the CAT2 tokens.
 
@@ -622,10 +622,10 @@ values={[
 ]}>
 <TabItem value="windows">
 
-````powershell
+```powershell
 cats --tail .\reference_tails\delegated_tail.clsp.hex --curry 0x8a7afe10d00899b94cf0d407b85e1b9fca21868bcf158563fe9432b60e36db7136055186221fbd27ecc7fc0d5b99ef1b --send-to xch1rd7hejemt57amqtxq8azqg90hgxyhd9shwyjuppq5ez2jn4rlznscn4efy --amount 6000000000 --as-bytes --solution "(a (q 2 (i 47 (q 8) (q 2 (i (= 45 2) () (q 8)) 1)) 1) (c (q . 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
 ``` 0x11038a7e107cb7e17a503ba201d94166018deecd777314e4697c5269d9f37fb6) 1))" --signature b75390ee21b001b7a721f719ff045e3dc2a1072ab0824a8e75c881398db0fbed8fde5c62bbdfe629dce5da3d77834559016acd6d403f9b90d3102da2e9452461457514088af0cabe0b8a8493fc9c09d1785f1322abc8958ecf7907eba0e0abcc
-````
+```
 
   </TabItem>
   <TabItem value="linux">
