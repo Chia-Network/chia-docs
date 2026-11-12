@@ -145,7 +145,7 @@ For a `Multi Issuance` token, you can issue more at any time:
 
 ### Melt tokens
 
-Melting destroys tokens and returns the XCH that backs them to the issuing vault. Only `Multi Issuance` tokens issued with `Revocable` on can be melted, and only from the tokens the issuing vault still holds.
+Melting destroys tokens and returns the XCH that backs them to the issuing vault. Only `Multi Issuance` tokens issued with `Revocable` on can be melted, and only from the tokens the issuing vault currently holds.
 
 1. Open the token from the `Tokens` page and click `Melt`.
 
