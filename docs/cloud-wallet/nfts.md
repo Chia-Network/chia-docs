@@ -28,6 +28,11 @@ You can browse NFTs from the left-hand menu or from a vault.
 
 3. Use `Search` and `Sort` (`Oldest to Newest` or `Newest to Oldest`) to find an NFT.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/nfts-01_list_light.png" alt="NFTs page with sample NFTs, search, and sort" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/nfts-01_list_dark.png" alt="NFTs page with sample NFTs, search, and sort" width="100%" className="theme-image-dark"/>
+</div>
+
 If you do not own any NFTs yet, the empty state is titled `Add Your First NFT`. NFTs you receive into a vault appear here after they arrive. You can also browse NFTs on [Dexie](https://dexie.space/nft) and [MintGarden](https://mintgarden.io).
 
 ### From a vault
@@ -35,6 +40,11 @@ If you do not own any NFTs yet, the empty state is titled `Add Your First NFT`. 
 1. Open the vault.
 
 2. Select the `NFTs` tab.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/nfts-02_vault_tab_light.png" alt="Vault NFTs tab listing the NFTs in that vault" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/nfts-02_vault_tab_dark.png" alt="Vault NFTs tab listing the NFTs in that vault" width="100%" className="theme-image-dark"/>
+</div>
 
 The vault tab lists NFTs in that vault only.
 
@@ -44,7 +54,17 @@ The vault tab lists NFTs in that vault only.
 
 2. Review the details page. Typical fields include `Description`, `Collection`, and `Status`. The status shows whether the off-chain data matches the on-chain checksums: `Checksums Verified`, `Checksum Mismatch`, `Unable to Verify Checksums`, or `Verifying Checksums`. A verified status does not confirm who minted the NFT.
 
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/nfts-03_details_light.png" alt="NFT details page with description, collection, checksum status, Create Offer, and Transfer NFT" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/nfts-03_details_dark.png" alt="NFT details page with description, collection, checksum status, Create Offer, and Transfer NFT" width="100%" className="theme-image-dark"/>
+</div>
+
 3. Open `Properties` for attributes, and expand `Details` for identifiers such as `NFT ID` and `Launcher ID`.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/nfts-04_properties_light.png" alt="NFT properties, MintGarden and Spacescan links, Refresh NFT Data, and the Details section" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/nfts-04_properties_dark.png" alt="NFT properties, MintGarden and Spacescan links, Refresh NFT Data, and the Details section" width="100%" className="theme-image-dark"/>
+</div>
 
 4. Use the `MintGarden` and `Spacescan.io` links to open the NFT on [MintGarden](https://mintgarden.io) or [Spacescan](https://www.spacescan.io). You can also browse NFTs on [Dexie](https://dexie.space/nft).
 
@@ -61,6 +81,11 @@ The details page also lets you download the NFT file, create an [offer](/cloud-w
 3. Review `NFT to send`. Enter a `Fee` if you want to speed confirmation. The card shows your spendable balance.
 
 4. Optionally add a `Memo` of up to 100 characters.
+
+<div style={{ textAlign: 'left', marginBottom: '1rem' }}>
+  <img src="/img/cloud-wallet/nfts-05_transfer_light.png" alt="Transfer NFT form with an XCHandle recipient resolved, the NFT to send, and the fee" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/nfts-05_transfer_dark.png" alt="Transfer NFT form with an XCHandle recipient resolved, the NFT to send, and the fee" width="100%" className="theme-image-dark"/>
+</div>
 
 5. Click `Send`. Review the `Confirm Transaction` dialog (`Sign and Send` for a passkey, or approve the request in the Chia Signer app).
 

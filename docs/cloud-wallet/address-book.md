@@ -21,11 +21,11 @@ You need a Cloud Wallet account. If you have not signed up yet, follow the [Gett
 
 1. Log in to your [Chia Cloud Wallet](https://vault.chia.net/) account.
 
-2. Open Address Book from the left-hand menu (tooltip: `Address book`). If you have no contacts yet, the empty state invites you to `Add Your First Contact`:
+2. Click `Address Book` in the left-hand menu. If you have no contacts yet, the empty state invites you to `Add Your First Contact`:
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/address-book-01_navigation_light.png" alt="Empty Address Book with Address book selected in the left-hand menu" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/address-book-01_navigation_dark.png" alt="Empty Address Book with Address book selected in the left-hand menu" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/address-book-01_navigation_light.png" alt="Empty Address Book with Address Book selected in the left-hand menu" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/address-book-01_navigation_dark.png" alt="Empty Address Book with Address Book selected in the left-hand menu" width="100%" className="theme-image-dark"/>
 </div>
 
 3. Click `Add a Contact` (empty state) or `Add Contact` (when you already have contacts).
@@ -62,7 +62,7 @@ Sort options include `Oldest to Newest`, `Newest to Oldest`, `A to Z`, and `Z to
 
 2. Edit the name, emails, or addresses on the contact page. The layout matches Create Contact. Changes save when you leave a field (there is no separate Save button).
 
-3. Return to the list when you are done.
+3. Click `Back` to return to the list.
 
 ## Delete a contact
 
@@ -74,17 +74,17 @@ Sort options include `Oldest to Newest`, `Newest to Oldest`, `A to Z`, and `Z to
 
 ## Use a contact when sending
 
-When you send XCH, a token, or an NFT from a vault, the `Send To` field accepts a typed address or a contact suggestion.
+When you send XCH, a token, or an NFT from a vault, the `Recipient` field (under `Send to`) accepts a typed address, an XCHandle, or a contact suggestion.
 
 1. Open Send for the asset you want to transfer.
 
-2. In `Send To`, start typing a contact name, email, address, or label. You can also use the address book control on the address field.
+2. In `Recipient`, start typing a contact name, email, address, or label. You can also use the address book button next to the field.
 
 3. Choose a suggestion to fill the destination address. Suggestions show the contact name, email, and labeled address when available.
 
 <div style={{ textAlign: 'left', marginBottom: '1rem' }}>
-  <img src="/img/cloud-wallet/address-book-04_send_to_light.png" alt="Send To field with Address Book contact suggestions" width="100%" className="theme-image-light"/>
-  <img src="/img/cloud-wallet/address-book-04_send_to_dark.png" alt="Send To field with Address Book contact suggestions" width="100%" className="theme-image-dark"/>
+  <img src="/img/cloud-wallet/address-book-04_send_to_light.png" alt="Recipient field with an Address Book contact suggestion" width="100%" className="theme-image-light"/>
+  <img src="/img/cloud-wallet/address-book-04_send_to_dark.png" alt="Recipient field with an Address Book contact suggestion" width="100%" className="theme-image-dark"/>
 </div>
 
 You can still paste any valid address directly without using a saved contact.

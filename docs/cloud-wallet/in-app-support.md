@@ -73,7 +73,7 @@ Click `Cancel` at any time to return to the Support list without submitting.
 
 While a ticket is still open (not solved or closed):
 
-- Click `Close without Reply` to mark it solved without adding a message
+- Click `Close without Reply` and confirm with `Close Ticket` to mark it solved without adding a message
 - Enter a reply and click `Close with Reply` to close it with a final note
 
 If a ticket is `Solved`, enter a reply and click `Reopen with Reply` to open it again.
