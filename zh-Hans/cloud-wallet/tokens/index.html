@@ -6,8 +6,8 @@
 <title data-rh="true">Tokens | Chia Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.chia.net/zh-Hans/img/chia-share.png"><meta data-rh="true" name="twitter:image" content="https://docs.chia.net/zh-Hans/img/chia-share.png"><meta data-rh="true" property="og:url" content="https://docs.chia.net/zh-Hans/cloud-wallet/tokens/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Tokens | Chia Documentation"><meta data-rh="true" name="description" content="This guide shows how to view and send Chia Asset Tokens (CATs) in the Chia Cloud Wallet, how to issue your own tokens, and how to set a custom display name and ticker."><meta data-rh="true" property="og:description" content="This guide shows how to view and send Chia Asset Tokens (CATs) in the Chia Cloud Wallet, how to issue your own tokens, and how to set a custom display name and ticker."><link data-rh="true" rel="icon" href="/zh-Hans/svg/favicon.svg"><link data-rh="true" rel="canonical" href="https://docs.chia.net/zh-Hans/cloud-wallet/tokens/"><link data-rh="true" rel="alternate" href="https://docs.chia.net/cloud-wallet/tokens/" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.chia.net/zh-Hans/cloud-wallet/tokens/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.chia.net/cloud-wallet/tokens/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Chia Cloud Wallet","item":"https://docs.chia.net/zh-Hans/cloud-wallet"},{"@type":"ListItem","position":2,"name":"Tokens","item":"https://docs.chia.net/zh-Hans/cloud-wallet/tokens"}]}</script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#122957">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
-<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/zh-Hans/assets/css/styles.3f3b638b.css">
-<script src="/zh-Hans/assets/js/runtime~main.d16a0d2b.js" defer="defer"></script>
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/zh-Hans/assets/css/styles.e8659815.css">
+<script src="/zh-Hans/assets/js/runtime~main.86ee342d.js" defer="defer"></script>
 <script src="/zh-Hans/assets/js/main.688d871d.js" defer="defer"></script>
 </head>
 <body>
@@ -33,7 +33,7 @@
 </ol>
 <div style="text-align:left;margin-bottom:1rem"><img src="/img/cloud-wallet/tokens-01_vault_tab_light.png" alt="Vault Tokens tab listing CAT balances" width="100%" class="theme-image-light"><img src="/img/cloud-wallet/tokens-01_vault_tab_dark.png" alt="Vault Tokens tab listing CAT balances" width="100%" class="theme-image-dark"></div>
 <ol start="3">
-<li class="">Click a token row to open its asset page. The page shows the balance, the vault address, and recent transactions for that token.</li>
+<li class="">Click a token row to open its asset page. The page shows the balance, the vault&#x27;s receive address, and recent transactions for that token, with <code>Send CAT</code>, <code>Create Offer</code>, and <code>Manage Coins</code>.</li>
 </ol>
 <div style="text-align:left;margin-bottom:1rem"><img src="/img/cloud-wallet/tokens-02_asset_light.png" alt="Token asset page with balance, address, and transactions" width="100%" class="theme-image-light"><img src="/img/cloud-wallet/tokens-02_asset_dark.png" alt="Token asset page with balance, address, and transactions" width="100%" class="theme-image-dark"></div>
 <p>If the vault has not received any tokens yet, the tab shows <code>No tokens yet</code>. Tokens appear after they arrive in the vault.</p>
@@ -43,7 +43,7 @@
 <p>From the token asset page, click <code>Send CAT</code>.</p>
 </li>
 <li class="">
-<p>Under <code>Send To</code>, enter or paste the destination <code>Address</code>, pick a saved contact, or use <code>Scan QR Code</code>. Addresses start with <code>xch</code> on mainnet.</p>
+<p>Under <code>Send to</code>, enter the <code>Recipient</code>: paste an address (addresses start with <code>xch</code> on mainnet), type an XCHandle such as <code>@alice</code>, pick a saved contact, or use <code>Scan QR code</code>.</p>
 </li>
 <li class="">
 <p>Under <code>Amount to send</code>, enter the <code>Amount</code> and an optional <code>Fee</code>.</p>
@@ -116,7 +116,7 @@
 <li class="">Click <code>Issue More</code>, then approve the transaction.</li>
 </ol>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="melt-tokens">Melt tokens<a href="#melt-tokens" class="hash-link" aria-label="Melt tokens的直接链接" title="Melt tokens的直接链接" translate="no">​</a></h3>
-<p>Melting destroys tokens and returns the XCH that backs them to the issuing vault. Only <code>Multi Issuance</code> tokens issued with <code>Revocable</code> on can be melted, and only from the tokens the issuing vault still holds.</p>
+<p>Melting destroys tokens and returns the XCH that backs them to the issuing vault. Only <code>Multi Issuance</code> tokens issued with <code>Revocable</code> on can be melted, and only from the tokens the issuing vault currently holds.</p>
 <ol>
 <li class="">
 <p>Open the token from the <code>Tokens</code> page and click <code>Melt</code>.</p>
@@ -148,7 +148,7 @@
 <li class=""><code>Token Symbol</code> (1 to 10 characters)</li>
 <li class=""><code>Asset ID</code> (exactly 64 characters). You can select a token you already hold, or paste an asset id.</li>
 </ul>
-<p>The form also includes <code>Display Image</code>. Image uploads are temporarily disabled. You can still save a display name and ticker without an image.</p>
+<p>The form also includes <code>Display Image</code>: click the image to upload one from your files. It is optional, but recommended.</p>
 </li>
 </ol>
 <div style="text-align:left;margin-bottom:1rem"><img src="/img/cloud-wallet/tokens-04_add_details_light.png" alt="Add Token Details form with display name, token symbol, and asset id" width="100%" class="theme-image-light"><img src="/img/cloud-wallet/tokens-04_add_details_dark.png" alt="Add Token Details form with display name, token symbol, and asset id" width="100%" class="theme-image-dark"></div>

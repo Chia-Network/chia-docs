@@ -6,8 +6,8 @@
 <title data-rh="true">Send Clawback | Chia Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.chia.net/img/chia-share.png"><meta data-rh="true" name="twitter:image" content="https://docs.chia.net/img/chia-share.png"><meta data-rh="true" property="og:url" content="https://docs.chia.net/cloud-wallet/send-clawback/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Send Clawback | Chia Documentation"><meta data-rh="true" name="description" content="This guide shows how to add a clawback window when sending XCH from a Cloud Wallet vault, then claw back, finalize, or push through the transfer."><meta data-rh="true" property="og:description" content="This guide shows how to add a clawback window when sending XCH from a Cloud Wallet vault, then claw back, finalize, or push through the transfer."><link data-rh="true" rel="icon" href="/svg/favicon.svg"><link data-rh="true" rel="canonical" href="https://docs.chia.net/cloud-wallet/send-clawback/"><link data-rh="true" rel="alternate" href="https://docs.chia.net/cloud-wallet/send-clawback/" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.chia.net/zh-Hans/cloud-wallet/send-clawback/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.chia.net/cloud-wallet/send-clawback/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Chia Cloud Wallet","item":"https://docs.chia.net/cloud-wallet"},{"@type":"ListItem","position":2,"name":"Send with Clawback","item":"https://docs.chia.net/cloud-wallet/send-clawback"}]}</script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#122957">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
-<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.6fdcd50d.css">
-<script src="/assets/js/runtime~main.20b65db3.js" defer="defer"></script>
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.5d97e9fb.css">
+<script src="/assets/js/runtime~main.4bea0458.js" defer="defer"></script>
 <script src="/assets/js/main.23bb6e75.js" defer="defer"></script>
 </head>
 <body>
@@ -38,7 +38,7 @@
 <p>Click <code>Send XCH</code> (or <code>Send</code> for your vault’s primary asset).</p>
 </li>
 <li class="">
-<p>Enter the recipient, amount, fee, and optional memo as usual.</p>
+<p>Under <code>Send to</code>, enter the <code>Recipient</code> (an address, an XCHandle such as <code>@alice</code>, or a contact from your Address Book), then the <code>Amount</code>, the <code>Fee</code>, and an optional <code>Memo</code>.</p>
 <p>When the network is busy, include a fee that is likely to confirm promptly. Clawback actions (<code>Claw Back</code>, <code>Finalize</code>, and later <code>Push Through</code>) are only available after this send confirms on-chain—not while it is still in the mempool. If confirmation takes longer than the clawback window you set, the window can expire before you can use those options, which defeats the purpose of clawback.</p>
 </li>
 <li class="">
@@ -54,7 +54,7 @@
 <ol start="6">
 <li class="">Click <code>Send</code>, then sign the transaction.</li>
 </ol>
-<p>After the send confirms on-chain, the outbound transfer shows as pending while clawback is active. Open the transaction for details such as <code>Clawback Expiry</code> and a settle countdown (for example <code>Settles</code> with a relative time). From that details screen you can <code>Claw Back Transaction</code> or <code>Finalize Transaction</code> while the window is open.</p>
+<p>After the send confirms on-chain, the vault&#x27;s activity list shows it as <code>Pending</code> with a countdown (for example <code>Settles in 29 minutes</code>). Open the transaction for its details: the recipient, the memo, <code>State</code>, <code>Confirmation Height</code>, <code>Fee</code>, and <code>Clawback Expiry</code> (the last moment you can claw the payment back). From that screen you can <code>Claw Back Transaction</code> or <code>Finalize Transaction</code> while the window is open.</p>
 <div style="text-align:left;margin-bottom:1rem"><img src="/img/cloud-wallet/send-clawback-02_tx_details_light.png" alt="Clawback transaction details with Claw Back and Finalize actions" width="100%" class="theme-image-light"><img src="/img/cloud-wallet/send-clawback-02_tx_details_dark.png" alt="Clawback transaction details with Claw Back and Finalize actions" width="100%" class="theme-image-dark"></div>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="claw-back-before-expiry">Claw back before expiry<a href="#claw-back-before-expiry" class="hash-link" aria-label="Direct link to Claw back before expiry" title="Direct link to Claw back before expiry" translate="no">​</a></h2>
 <p>Use this if you sent to the wrong address or need to reclaim the XCH while the window is still open. The send must already be confirmed on-chain so these actions appear on the transaction details screen.</p>
@@ -66,7 +66,7 @@
 <p>Choose <code>Claw Back Transaction</code>.</p>
 </li>
 <li class="">
-<p>Enter a fee if prompted, then confirm <code>Claw Back Transaction</code> and sign.</p>
+<p>The dialog shows the amount and the receiver&#x27;s address. Enter a <code>Fee</code> if you want one, click <code>Claw Back Transaction</code>, and sign.</p>
 </li>
 </ol>
 <p>The funds return to your vault after the clawback transaction confirms. This requires another on-chain fee and signature.</p>
@@ -90,7 +90,7 @@
 <p>The app may show: you can no longer claw back this transaction, but you can still push the funds to the recipient if their wallet doesn’t support clawbacks.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="troubleshooting">Troubleshooting<a href="#troubleshooting" class="hash-link" aria-label="Direct link to Troubleshooting" title="Direct link to Troubleshooting" translate="no">​</a></h2>
 <ul>
-<li class="">Clawback fields appear only on XCH vault Send; token and NFT sends do not include clawback at this time</li>
+<li class="">The <code>Clawback</code> card is on the XCH, token, and NFT send forms of a vault</li>
 <li class="">Set at least one of Days, Hours, or Minutes greater than zero to enable clawback</li>
 <li class="">Prefer recipients on Cloud Wallet or another clawback-capable wallet (such as Sage)</li>
 <li class=""><code>Claw Back</code>, <code>Finalize</code>, and <code>Push Through</code> appear only after the original send confirms on-chain (not while it is in the mempool)</li>
