@@ -14,18 +14,18 @@ This guide will show you how to get started with the Chia Signer app, from setti
 
 - A compatible phone or tablet for the Chia Signer app:
   - **iOS:** iPhone or iPad running **iOS 15 or later** with a **Secure Enclave**. Requirements are kept up to date on the [App Store](https://apps.apple.com/app/chia-signer/id6504493785) listing.
-  - **Android** (beta): Phone or tablet that meets the requirements shown on the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer). For the strongest protection, use a device that supports **hardware-backed Keystore** (including **StrongBox** where available); if the device does not, the app can still run using **software keys** with clear in-app warnings when you create each key.
+  - **Android:** Phone or tablet that meets the requirements shown on the [Google Play listing](https://play.google.com/store/apps/details?id=net.chia.android.signer). For the strongest protection, use a device that supports **hardware-backed Keystore** (including **StrongBox** where available); if the device does not, the app can still run using **software keys** with clear in-app warnings when you create each key.
 
 **Key Concepts:**
 
-- **Hardware-protected keys (recommended):** On **iOS**, keys live in the **Secure Enclave**. On **Android** (beta), keys can be stored using Android’s **hardware-backed Keystore**, which may use **StrongBox** (dedicated tamper-resistant hardware) or a **Trusted Execution Environment (TEE)** when the device supports it, see Google’s [Android Keystore overview](https://developer.android.com/privacy-and-security/keystore). If your Android device does not expose suitable hardware backing, the app falls back to **software keys** and **warns you at each key creation** that the key is software-based.
+- **Hardware-protected keys (recommended):** On **iOS**, keys live in the **Secure Enclave**. On **Android**, keys can be stored using Android’s **hardware-backed Keystore**, which may use **StrongBox** (dedicated tamper-resistant hardware) or a **Trusted Execution Environment (TEE)** when the device supports it, see Google’s [Android Keystore overview](https://developer.android.com/privacy-and-security/keystore). If your Android device does not expose suitable hardware backing, the app falls back to **software keys** and **warns you at each key creation** that the key is software-based.
 - **Secure, Device-Based Approval:** The Signer app allows you to securely approve transactions initiated from your Chia Cloud Wallet on a separate, dedicated device.
 - **Two-Device Requirement:** Currently, the Chia Cloud Wallet and Chia Signer app must be on separate devices (for example, Chia Cloud Wallet on your computer or phone, and Signer on another smartphone).
 
 ## 1. Get the Chia Signer App
 
 - **iOS:** [App Store](https://apps.apple.com/app/chia-signer/id6504493785).
-- **Android** (beta): [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
+- **Android:** [Google Play](https://play.google.com/store/apps/details?id=net.chia.android.signer).
 
 ## 2. Create a New Key in the Chia Signer App
 
@@ -42,11 +42,11 @@ After installing and opening the app for the first time:
 3.  **Generate Key:** Tap **Generate Key**. The app creates a **hardware-backed key** in your device’s **Secure Enclave**. Private key material stays in that hardware and is not exposed to normal app memory.
 
 </TabItem>
-<TabItem value="android" label="Android (beta)">
+<TabItem value="android" label="Android">
 
 ### Hardware check on first start
 
-The Android app is in **beta**. When you first start the app, it checks whether your device supports **hardware-backed key storage** through Android’s [Keystore](https://developer.android.com/privacy-and-security/keystore) system. Depending on the device, that may use:
+When you first start the Android app, it checks whether your device supports **hardware-backed key storage** through Android’s [Keystore](https://developer.android.com/privacy-and-security/keystore) system. Depending on the device, that may use:
 
 - **StrongBox** — dedicated tamper-resistant hardware (a discrete secure module) used for Android’s hardware-backed Keystore on devices that ship StrongBox, or
 - **TEE-backed Keystore** — keys handled inside a Trusted Execution Environment when StrongBox is not available but the device still offers hardware-isolated key storage.
