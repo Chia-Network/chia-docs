@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Intro
 
-This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。 欢迎钱包开发者将其整合到开发的GUI钱包中。
+This document will show you how to use Chia's standalone clawback primitive. 欢迎钱包开发者将其整合到开发的GUI钱包中。欢迎钱包开发者将其整合到开发的GUI钱包中。
 
 有关其他技术资源，请参阅以下内容：
 
@@ -30,7 +30,7 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
 
 ## 关于可撤回交易（clawback）
 
-可撤回交易原语的目的是防止将Chia资产发送到一个错误的地址。 可撤回交易的原理很简单：它是一种中间硬币，直到时间锁定过期之前，无法发送到目标地址。 与此同时，发送者可以"撤回"该硬币，将其以标准XCH的形式退回到他们的钱包中。
+可撤回交易原语的目的是防止将Chia资产发送到一个错误的地址。可撤回交易的原理很简单：它是一种中间硬币，直到时间锁定过期之前，无法发送到目标地址。与此同时，发送者可以"撤回"该硬币，将其以标准XCH的形式退回到他们的钱包中。
 
 下面使用A、B两人来进行演示：
 
@@ -43,7 +43,7 @@ This document will show you how to use Chia's standalone clawback primitive. 欢
   - It contains Alice's address as its clawback destination (Alice -- and no one else -- can modify this later)
   - It contains Bob's address as its final destination (Bob -- and no one else -- can modify this later)
 - The clawback coin therefore contains the following logic for how it may be spent:
-  - Before 1 hour has elapsed since the coin's creation, Alice can use [p2_1_of_n](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_m_of_n_delegate_direct.clvm) to spend the coin using the same public/private key pair that created the coin. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case.
+  - Before 1 hour has elapsed since the coin's creation, Alice can use [p2_1_of_n](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_m_of_n_delegate_direct.clvm) to spend the coin using the same public/private key pair that created the coin. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/main/chia/wallet/puzzles/p2_puzzle_hash.clvm). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case. When the coin is spent in this way, a new coin is created using [p2_puzzle_hash](https://github.com/Chia-Network/chia-blockchain/blob/27c34ec92c25b724827b6b1030d0a96e947a57e2/chia/wallet/puzzles/p2_puzzle_hash.clsp). Typically, this coin will be created in Alice's wallet, but it could be created in another wallet instead. The new coin uses the standard Chia puzzle. This is the `clawback` case.
   - Before 1 hour has elapsed since the coin's creation, nobody other than Alice may spend it
   - After 1 hour, the timelock elapses. At this point Bob can spend the clawback coin. When this spend occurs, by default a new standard XCH coin is created in Bob's wallet. Bob can also pass in a different address than the one he originally specified if he so chooses.
   - Note that the coin's clawback logic is in place for the life of the coin. This means that until the coin is spent, Alice is able to claw it back. This is true regardless of the coin's age. Because of this, after the timelock expires, Bob must spend the clawback coin in order to receive the XCH in his wallet. After this spend has completed, the clawback coin no longer exists, and the spend is final.
@@ -102,20 +102,20 @@ python -m venv venv
   </TabItem>
   <TabItem value="linux">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   <TabItem value="macos">
 
-````bash
+```bash
 python3 -m venv venv
 . ./venv/bin/activate
 ``` ./venv/bin/activate
-````
+```
 
   </TabItem>
   </Tabs>

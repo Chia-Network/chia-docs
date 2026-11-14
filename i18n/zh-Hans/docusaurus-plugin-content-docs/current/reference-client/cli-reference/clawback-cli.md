@@ -59,17 +59,17 @@ Usage: `clawback claim [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | True     | The coin ID you want to claim                                                                            |
-| -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
-| -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
-| -t            | --target-address  | TEXT    | False    | The address you want to send the coin to                                                                 |
-| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -c            | --coin-id         | TEXT    | True     | The coin ID you want to claim                                                                                                                                 |
+| -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                                                                           |
+| -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                                                     |
+| -t            | --target-address  | TEXT    | False    | The address you want to send the coin to                                                                                                                      |
+| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                                                                      |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                            |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
 :::info
 
@@ -85,8 +85,7 @@ In this case, the Recipient needs to wait for one more block to be farmed before
 
 :::
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 First, the Sender creates a new clawback coin with a 60-second timelock:
 
@@ -244,20 +243,19 @@ Usage: `clawback claw [OPTIONS]`
 
 Options: Clawback an unclaimed coin
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | True     | The coin ID for the clawback coin to inspect                                                             |
-| -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                      |
-| -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                |
-| -t            | --target-address  | TEXT    | False    | The address you want to sent the clawed back coin to                                                     |
-| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -c            | --coin-id         | TEXT    | True     | The coin ID for the clawback coin to inspect                                                                                                                  |
+| -m            | --fee             | FLOAT   | False    | The fee in XCH for this transaction                                                                                                                           |
+| -w            | --wallet-id       | INTEGER | False    | The wallet id for fees. If no target address given the clawback will go to this wallet id                                                     |
+| -t            | --target-address  | TEXT    | False    | The address you want to sent the clawed back coin to                                                                                                          |
+| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                                                                      |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                            |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 Let's say the following clawback coin exists:
 
@@ -316,21 +314,20 @@ Usage: `clawback create [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -t            | --to              | TEXT    | True     | The recipient's address                                                                                  |
-| -l            | --timelock        | INTEGER | False    | The timelock to use for the clawback coin you're creating, in seconds. Default is two weeks              |
-| -a            | --amount          | INTEGER | True     | The amount to fund (in XCH)                                                                              |
-| -w            | --wallet-id       | INTEGER | False    | The wallet id to send from                                                                               |
-| -m            | --fee             | FLOAT   | False    | The fee in XCH for the funding transaction                                                               |
-| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -t            | --to              | TEXT    | True     | The recipient's address                                                                                                                                       |
+| -l            | --timelock        | INTEGER | False    | The timelock to use for the clawback coin you're creating, in seconds. Default is two weeks                                                   |
+| -a            | --amount          | INTEGER | True     | The amount to fund (in XCH)                                                                                                                |
+| -w            | --wallet-id       | INTEGER | False    | The wallet id to send from                                                                                                                                    |
+| -m            | --fee             | FLOAT   | False    | The fee in XCH for the funding transaction                                                                                                                    |
+| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                                                                      |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                            |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details>
-<summary>Example</summary>
+<details><summary>Example</summary>
 
 For this example, we will use two wallets: a Sender and a Recipient. The Sender has a balance of 10 TXCH and the Recipient has 0 TXCH.
 
@@ -409,17 +406,16 @@ Usage: `clawback show [OPTIONS]`
 
 Options:
 
-| Short Command | Long Command      | Type    | Required | Description                                                                                              |
-| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------- |
-| -c            | --coin-id         | TEXT    | False    | The coin ID for the clawback coin to inspect                                                             |
-| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                 |
-| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                       |
+| Short Command | Long Command      | Type    | Required | Description                                                                                                                                                   |
+| :------------ | :---------------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -c            | --coin-id         | TEXT    | False    | The coin ID for the clawback coin to inspect                                                                                                                  |
+| -np           | --node-rpc-port   | INTEGER | False    | Set the port where the Node is hosting the RPC interface                                                                                                      |
+| -f            | --fingerprint     | INTEGER | False    | Set the fingerprint to specify which wallet to use                                                                                                            |
 | -wp           | --wallet-rpc-port | INTEGER | False    | Set the port where the Wallet is hosting the RPC interface. See the rpc_port under wallet in config.yaml |
-| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                            |
-| -h            | --help            | None    | False    | Show a help message and exit                                                                             |
+| -db           | --db-path         | TEXT    | False    | Set the path for the database                                                                                                                                 |
+| -h            | --help            | None    | False    | Show a help message and exit                                                                                                                                  |
 
-<details>
-<summary>Example 1</summary>
+<details><summary>Example 1</summary>
 
 The Sender can show a Clawback coin without passing in the Coin ID:
 
@@ -442,8 +438,7 @@ Time left: 518 seconds
 
 </details>
 
-<details>
-<summary>Example 2</summary>
+<details><summary>Example 2</summary>
 
 Anyone other than the sender needs to pass in the Coin ID in order to show a Clawback coin:
 
