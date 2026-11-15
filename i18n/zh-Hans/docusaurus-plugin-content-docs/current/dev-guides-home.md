@@ -13,7 +13,7 @@ Welcome to the Chia Network Developer Guides hub! Your gateway to mastering the 
 
 Embark on a swift journey into Chia Network's Crash Course for developers. Start with an Intro to Developing on Chia, grasp the fundamentals of Chialisp, explore the world of Smart Coins, and understand the intricacies of Signatures, State, Inner Puzzles, and Primitives.
 
-<CardGrid label="课程" cta="阅读课程" numbered tone="navy">
+<CardGrid label="Lesson" cta="Read lesson" numbered tone="navy">
   <Card href="/guides/crash-course/introduction/" title="Intro to Developing on Chia" />
   <Card href="/guides/crash-course/intro-to-chialisp/" title="Intro to Chialisp" />
   <Card href="/guides/crash-course/smart-coins/" title="Intro to Smart Coins" />
@@ -30,7 +30,7 @@ Embark on a swift journey into Chia Network's Crash Course for developers. Start
 
 Explore the core building blocks of Chia development in the Primitives section. Unlock the potential of NFTs, embrace the versatility of CATs (Colored Coins), navigate the intricacies of Offers, leverage the DataLayer for efficient data management, implement Clawback mechanisms, understand the dynamics of DAOs, and secure your applications with Verifiable Credentials. These primitives are the foundation for creating robust and innovative solutions on the Chia Network.
 
-<CardGrid label="原语" cta="阅读指南" tone="light">
+<CardGrid label="Primitive" cta="Read guide" tone="light">
   <Card href="/guides/nft-developer-guide/" title="NFTs" />
   <Card href="/guides/cat-developer-guide/" title="CATs" />
   <Card href="/guides/datalayer-developer-guide/" title="DataLayer™" />
@@ -46,7 +46,7 @@ Explore the core building blocks of Chia development in the Primitives section. 
 
 Immerse yourself in Chia Network's Tutorials section for developers. Understand the intricacies of Application Structure, explore the art of Custom Puzzle Locks, wield the power of the Custody Tool, master Coin Spending via RPC, harness the capabilities of the Seeder and Simulator with our user guides, and gain insights into the WalletConnect framework.
 
-<CardGrid label="教程" cta="阅读教程" tone="navy">
+<CardGrid label="Tutorial" cta="Read tutorial" tone="navy">
   <Card href="/guides/application-structure-tutorial/" title="Application Structure" />
   <Card href="/guides/custom-puzzle-lock-tutorial/" title="Custom Puzzle Lock" />
   <Card href="/guides/custody-tool/" title="Custody Tool" />
@@ -63,7 +63,7 @@ Immerse yourself in Chia Network's Tutorials section for developers. Understand 
 
 Dive into the Video Series of Chia Network's Developer Guides for a dynamic learning experience. Discover why Chia is great, explore the essentials of developing Chia applications, set up your tools efficiently, delve into programming in Chialisp, understand the intricacies of the Coin Lifecycle, implement Singleton Contracts, master the dynamics of State, Coins, and Announcements, ensure security with insights into Arguments and Signing, explore Announcements and Oracles, and harness the potential of CATs (Chia Asset Tokens).
 
-<CardGrid label="视频系列" cta="观看视频" tone="light">
+<CardGrid label="Video series" cta="Watch series" tone="light">
   <Card href="/guides/why-chia-is-great-video-series/" title="Why Chia is Great" />
   <Card href="/guides/developing-applications-video-series/" title="Developing Chia Applications" />
   <Card href="/guides/tools-and-setup-video-series/" title="Tools and Setup" />

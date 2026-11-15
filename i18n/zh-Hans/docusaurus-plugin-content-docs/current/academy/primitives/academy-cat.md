@@ -25,7 +25,7 @@ In this lesson, we talk about Chia Asset Tokens, and how they can be used.
 
 <summary> Expand for the full script </summary>
 
-0:00\
+0:00  
 A Chia Asset Token, or CAT, is a type of fungible token that can be minted from XCH. These tokens can take many different forms from a separate form of currency, to representing a collection of identical assets.
 
 0:20

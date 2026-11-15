@@ -7,7 +7,7 @@ import WalletKeyDetails from '@site/static/img/troubleshooting/wallet_key_detail
 import WalletKeysOverview from '@site/static/img/troubleshooting/wallet_keys_overview.png';
 import WalletLogout from '@site/static/img/troubleshooting/wallet_logout.png';
 
-This doc assumes you have chia installed and will overview both the CLI and GUI methods of identifying various keys.\
+This doc assumes you have chia installed and will overview both the CLI and GUI methods of identifying various keys.  
 Please refer to the [Installation page](/reference-client/install-and-setup/installation) if you do not have chia installed.
 
 ## Keys Overview
@@ -72,7 +72,7 @@ chia keys show
 ```
 
 :::warning
-`chia keys show --show-mnemonic-seed`\
+`chia keys show --show-mnemonic-seed`  
 displays the _Master Private Key, Farmer Private Key, and Seed Phrase / Mnemonic_ **NEVER** share these with anyone.
 :::
 
