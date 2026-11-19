@@ -10,8 +10,8 @@ slug: /reference-client/walletconnect/offer-wc
 
 Gets a list of offers, based on certain search criteria.
 
-| Parameter                          | Type      | Description                      |
-| ---------------------------------- | --------- | -------------------------------- |
+| Parameter                                             | Type      | Description                                      |
+| ----------------------------------------------------- | --------- | ------------------------------------------------ |
 | `start?` _(optional)_              | `number`  | Start index.                     |
 | `end?` _(optional)_                | `number`  | End index.                       |
 | `sortKey?` _(optional)_            | `string`  | Sort key.                        |
@@ -29,8 +29,8 @@ Gets the number of owned offers, taken offers, and total offers.
 
 #### Output Data
 
-| Parameter          | Type      | Description             |
-| ------------------ | --------- | ----------------------- |
+| Parameter          | Type      | Description                             |
+| ------------------ | --------- | --------------------------------------- |
 | `myOffersCount`    | `number`  | Number of owned offers. |
 | `takenOffersCount` | `number`  | Number of taken offers. |
 | `total`            | `number`  | Total number of offers. |
@@ -40,30 +40,30 @@ Gets the number of owned offers, taken offers, and total offers.
 
 Cancels an offer either on-chain by spending the coins or off-chain by only removing it from the list.
 
-| Parameter | Type      | Description                           |
-| --------- | --------- | ------------------------------------- |
+| Parameter | Type      | Description                                           |
+| --------- | --------- | ----------------------------------------------------- |
 | `tradeId` | `string`  | Trade id.                             |
 | `secure`  | `boolean` | Whether to cancel the offer on-chain. |
 | `fee`     | `number`  | Transaction fee in mojos.             |
 
 #### Output Data
 
-| Parameter | Type      | Description             |
-| --------- | --------- | ----------------------- |
+| Parameter | Type      | Description                             |
+| --------- | --------- | --------------------------------------- |
 | `success` | `boolean` | Backend success status. |
 
 ### `chia_checkOfferValidity`
 
 Checks whether or not an offer is still valid.
 
-| Parameter   | Type     | Description                 |
-| ----------- | -------- | --------------------------- |
+| Parameter   | Type     | Description                                 |
+| ----------- | -------- | ------------------------------------------- |
 | `offerData` | `string` | Bech32m encoded offer data. |
 
 #### Output Data
 
-| Parameter | Type      | Description                 |
-| --------- | --------- | --------------------------- |
+| Parameter | Type      | Description                                 |
+| --------- | --------- | ------------------------------------------- |
 | `id`      | `string`  | Trade id.                   |
 | `valid`   | `boolean` | Whether the offer is valid. |
 
@@ -71,15 +71,15 @@ Checks whether or not an offer is still valid.
 
 Accepts an offer and completes the transaction.
 
-| Parameter | Type     | Description                 |
-| --------- | -------- | --------------------------- |
+| Parameter | Type     | Description                                 |
+| --------- | -------- | ------------------------------------------- |
 | `offer`   | `string` | Bech32m encoded offer data. |
 | `fee`     | `number` | Transaction fee in mojos.   |
 
 #### Output Data
 
-| Parameter     | Type                                                                  | Description             |
-| ------------- | --------------------------------------------------------------------- | ----------------------- |
+| Parameter     | Type                                                                  | Description                             |
+| ------------- | --------------------------------------------------------------------- | --------------------------------------- |
 | `tradeRecord` | [`TradeRecord`](/reference-client/walletconnect/offer-wc#traderecord) | Trade record.           |
 | `success`     | `boolean`                                                             | Backend success status. |
 
@@ -87,14 +87,14 @@ Accepts an offer and completes the transaction.
 
 Gets the summary object of an offer.
 
-| Parameter   | Type     | Description                 |
-| ----------- | -------- | --------------------------- |
+| Parameter   | Type     | Description                                 |
+| ----------- | -------- | ------------------------------------------- |
 | `offerData` | `string` | Bech32m encoded offer data. |
 
 #### Output Data
 
-| Parameter | Type           | Description             |
-| --------- | -------------- | ----------------------- |
+| Parameter | Type           | Description                             |
+| --------- | -------------- | --------------------------------------- |
 | `id`      | `string`       | Trade id.               |
 | `summary` | `TradeSummary` | Trade summary.          |
 | `success` | `boolean`      | Backend success status. |
@@ -103,14 +103,14 @@ Gets the summary object of an offer.
 
 Gets the data of an offer.
 
-| Parameter | Type     | Description |
-| --------- | -------- | ----------- |
-| `offerId` | `string` | Trade id.   |
+| Parameter | Type     | Description               |
+| --------- | -------- | ------------------------- |
+| `offerId` | `string` | Trade id. |
 
 #### Output Data
 
-| Parameter     | Type                                                                  | Description                 |
-| ------------- | --------------------------------------------------------------------- | --------------------------- |
+| Parameter     | Type                                                                  | Description                                 |
+| ------------- | --------------------------------------------------------------------- | ------------------------------------------- |
 | `offer`       | `string`                                                              | Bech32m encoded offer data. |
 | `tradeRecord` | [`TradeRecord`](/reference-client/walletconnect/offer-wc#traderecord) | Trade record.               |
 | `success`     | `boolean`                                                             | Backend success status.     |
@@ -119,14 +119,14 @@ Gets the data of an offer.
 
 Gets the trade record of an offer.
 
-| Parameter | Type     | Description |
-| --------- | -------- | ----------- |
-| `offerId` | `string` | Trade id.   |
+| Parameter | Type     | Description               |
+| --------- | -------- | ------------------------- |
+| `offerId` | `string` | Trade id. |
 
 #### Output Data
 
-| Parameter     | Type                                                                  | Description                                                                                             |
-| ------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Parameter     | Type                                                                  | Description                                                                                                             |
+| ------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `offer`       | `null`                                                                | Use [`chia_getOfferData`](/reference-client/walletconnect/offer-wc#chia_getofferdata) if you need this. |
 | `tradeRecord` | [`TradeRecord`](/reference-client/walletconnect/offer-wc#traderecord) | Trade record.                                                                                           |
 | `success`     | `boolean`                                                             | Backend success status.                                                                                 |
@@ -135,17 +135,17 @@ Gets the trade record of an offer.
 
 Creates an offer for wallet ids.
 
-| Parameter                             | Type      | Description                         |
-| ------------------------------------- | --------- | ----------------------------------- |
-| `offer`                               | `any`     | Offered asset amounts.              |
-| `driverDict`                          | `any`     | Driver dict object.                 |
+| Parameter                                                | Type      | Description                                         |
+| -------------------------------------------------------- | --------- | --------------------------------------------------- |
+| `offer`                                                  | `any`     | Offered asset amounts.              |
+| `driverDict`                                             | `any`     | Driver dict object.                 |
 | `validateOnly?` _(optional)_          | `boolean` | Whether to only validate the offer. |
 | `disableJSONFormatting?` _(optional)_ | `boolean` | Whether to disable JSON formatting. |
 
 #### Output Data
 
-| Parameter     | Type                                                                  | Description                 |
-| ------------- | --------------------------------------------------------------------- | --------------------------- |
+| Parameter     | Type                                                                  | Description                                 |
+| ------------- | --------------------------------------------------------------------- | ------------------------------------------- |
 | `offer`       | `string`                                                              | Bech32m encoded offer data. |
 | `tradeRecord` | [`TradeRecord`](/reference-client/walletconnect/offer-wc#traderecord) | Trade record.               |
 
@@ -153,9 +153,9 @@ Creates an offer for wallet ids.
 
 ### TradeRecord
 
-| Parameter          | Type                                                                  | Description                                  |
-| ------------------ | --------------------------------------------------------------------- | -------------------------------------------- |
-| `acceptedAtTime`   | <code>number &#124; null</code>                                       | Timestamp when the trade was accepted.       |
+| Parameter          | Type                                                                  | Description                                                  |
+| ------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `acceptedAtTime`   | <code>number &#124; null</code>                   | Timestamp when the trade was accepted.       |
 | `coinsOfInterest`  | [`Coin[]`](/reference-client/walletconnect/walletconnect#coin)        | Coins involved in trade.                     |
 | `confirmedAtIndex` | `number`                                                              | Confirmation block index.                    |
 | `createdAtTime`    | `number`                                                              | Timestamp when the trade was created.        |
@@ -165,7 +165,7 @@ Creates an offer for wallet ids.
 | `sentTo`           | [`Peer[]`](/reference-client/walletconnect/walletconnect#peer)        | Peers the transaction was sent to.           |
 | `status`           | [`TradeStatus`](/reference-client/walletconnect/offer-wc#tradestatus) | Trade status.                                |
 | `summary`          | `any`                                                                 | Trade summary metadata.                      |
-| `takenOffer`       | <code>string &#124; null</code>                                       | Taken bech32m encoded offer data.            |
+| `takenOffer`       | <code>string &#124; null</code>                   | Taken bech32m encoded offer data.            |
 | `tradeId`          | `string`                                                              | Trade id.                                    |
 | `_offerData`       | `string`                                                              | Bech32m encoded offer data.                  |
 
@@ -173,11 +173,11 @@ Creates an offer for wallet ids.
 
 Values that can be returned for the trade_status. Note that offers cannot be resynced and are not available on-chain so granular trade_status is not always available.
 
-| Value             |                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------- |
-| `PENDING_ACCEPT`  | Acceptance has been pushed to the chain and is pending confirmation.                  |
-| `PENDING_CONFIRM` | Acceptance has been pushed to the chain and is pending confirmation.                  |
+| Value             |                                                                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `PENDING_ACCEPT`  | Acceptance has been pushed to the chain and is pending confirmation.                                     |
+| `PENDING_CONFIRM` | Acceptance has been pushed to the chain and is pending confirmation.                                     |
 | `PENDING_CANCEL`  | Cancelation has been pushed to the chain (if applicable) and is pending confirmation. |
 | `CANCELLED`       | Offer cancellation has been confirmed onchain (if applicable).                        |
-| `CONFIRMED`       | Offer acceptance has been confirmed onchain.                                          |
-| `FAILED`          | Offer acceptance failed, review logs for reasoning of failure.                        |
+| `CONFIRMED`       | Offer acceptance has been confirmed onchain.                                                             |
+| `FAILED`          | Offer acceptance failed, review logs for reasoning of failure.                                           |

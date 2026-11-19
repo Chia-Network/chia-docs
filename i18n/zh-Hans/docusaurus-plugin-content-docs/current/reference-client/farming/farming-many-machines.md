@@ -47,6 +47,7 @@ If you are more of a visual learner, JM made a video outlining the steps from th
   ```
 
   Options to make this directory accessible include:
+
   - Share the directory on a network drive
   - Copy it using a USB key
   - Do a network copy to each harvester
@@ -163,7 +164,7 @@ Here's how to find your logs: [Where to Find Things](/reference-client/troublesh
 
 (This is basically repeating what @mariano54 said in [this discussion](https://github.com/Chia-Network/chia-blockchain/discussions/1116#discussioncomment-420398).)
 
-安全是关于做出更好的选择。 永远无法达到100%的安全性，但可以始终通过做出更好的选择来提高安全性。
+安全是关于做出更好的选择。永远无法达到100%的安全性，但可以始终通过做出更好的选择来提高安全性。
 
 ### 保持密钥分离
 
@@ -174,7 +175,7 @@ In other words, _only use the keys specific to your machine's purpose_.
 
 #### 在多台机器上生成地块
 
-As stated [above](/reference-client/farming/farming-many-machines#先决条件), run the following command when creating plots:
+As stated [above](/reference-client/farming/farming-many-machines#prerequisites), run the following command when creating plots:
 
 ```bash
 chia plots create -f <farmer_key> -p <pool_key>
@@ -184,7 +185,7 @@ When you use the `-f` and `-p` parameters, you do not need to copy the keys to t
 
 #### 在多台机器上进行收割
 
-Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/reference-client/farming/farming-many-machines#先决条件) steps to keep them in one place while farming.
+Rather than maintaining a copy of your farmer's certificates on each harvester, follow the [above](/reference-client/farming/farming-many-machines#prerequisites) steps to keep them in one place while farming.
 
 ### 钱包保持独立(Separate)
 
@@ -210,4 +211,4 @@ chia keys show
 
 ### 使用图形用户界面（GUI）
 
-Click on the _Logout_ icon at the top right. 会看到列出的钱包。 点击眼睛图标。
+Click on the _Logout_ icon at the top right. 会看到列出的钱包。点击眼睛图标。
