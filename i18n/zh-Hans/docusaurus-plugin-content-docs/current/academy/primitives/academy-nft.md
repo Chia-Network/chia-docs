@@ -26,7 +26,7 @@ In this lesson, we talk about what an NFT is, and some examples of how it can be
 
 <summary> Expand for the full script </summary>
 
-0:00\
+0:00  
 NFTs, or non-fungible tokens, can be used to provide proof of ownership, handle licenses and royalties, and ensure uniqueness for digital entities and even real-world items.
 
 0:20
