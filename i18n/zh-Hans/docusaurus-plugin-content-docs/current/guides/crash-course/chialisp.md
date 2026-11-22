@@ -122,7 +122,7 @@ Which should produce the following output:
 42
 ```
 
-So Chialisp can calculate the [meaning of life](<https://en.wikipedia.org/wiki/42_(number)#The_Hitchhiker's_Guide_to_the_Galaxy>)!
+So Chialisp can calculate the [meaning of life](https://en.wikipedia.org/wiki/42_(number)#The_Hitchhiker's_Guide_to_the_Galaxy)!
 
 ---
 
